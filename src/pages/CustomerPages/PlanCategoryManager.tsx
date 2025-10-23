@@ -114,7 +114,7 @@ const StaticPlanCategoryManager: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white">
-                        {staticCategories.map((category, index) => (
+                        {staticCategories.map((category) => (
                             // Row styling: White background with a distinct blue bottom border for division
                             <tr 
                                 key={category.id} 

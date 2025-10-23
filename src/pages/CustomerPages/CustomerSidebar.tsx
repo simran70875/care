@@ -113,12 +113,6 @@ const CustomerSidebar: React.FC = () => {
     );
   };
 
-  // Mock Customer Data - Kept for the profile section
-  const customer = {
-    name: "Charles 'O Connor",
-    profileImage: "https://atscaleconference.com/wp-content/uploads/2022/08/image-placeholder-person.jpg",
-  };
-
   return (
     <aside
       className={`fixed top-0 left-0 bg-white dark:bg-gray-900 h-screen border-r border-gray-200 z-50 transition-all duration-300

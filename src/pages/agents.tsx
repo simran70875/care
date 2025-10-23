@@ -2666,7 +2666,7 @@ export default function CarersPage() {
         rows={displayedCarers}
         rowCount={displayedCarers.length}
         pagination
-        paginationMode="customer" // Using customer mode since data is filtered locally
+        paginationMode="client" // Using customer mode since data is filtered locally
         paginationModel={paginationModel}
         onPaginationModelChange={(model) => setPaginationModel(model)}
         loading={loading}

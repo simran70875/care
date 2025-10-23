@@ -6,10 +6,7 @@ import {
     Printer,
     Table,
     CheckSquare,
-    Clipboard,
 } from "lucide-react";
-import React from "react";
-
 // =================================================================
 // 1. TYPE DEFINITIONS & DUMMY DATA
 // =================================================================

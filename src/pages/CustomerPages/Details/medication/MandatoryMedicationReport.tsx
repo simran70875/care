@@ -3,10 +3,7 @@ import {
     Search,
     Table,
     Edit,
-    Calendar,
-    ChevronRight,
 } from "lucide-react";
-import React from "react";
 
 // =================================================================
 // 1. TYPE DEFINITIONS & DUMMY DATA

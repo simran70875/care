@@ -1,4 +1,3 @@
-import React from 'react';
 
 // --- Mock Data for Documents Tab ---
 const documentsData = [

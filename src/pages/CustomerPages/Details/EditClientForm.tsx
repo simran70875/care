@@ -68,6 +68,7 @@ interface ClientData {
     area: string;
     country: string;
     use_home_address: boolean;
+    billing_code: string
 }
 
 // --- Helper Components ---
@@ -164,6 +165,7 @@ const EditClientForm: React.FC = () => {
         nhs_number: '638 134 4520',
         invoice_cycle: '',
 
+        billing_code: "",
         // Address Details
         current_address: 'Longmire Centre, 181 Langley Lane',
         town: 'Wythenshaw',
@@ -176,20 +178,24 @@ const EditClientForm: React.FC = () => {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type, checked } = e.target;
-        
+        const target = e.target;
+        const { name, value, type } = target;
+
+        const newValue = type === 'checkbox' && 'checked' in target ? target.checked : value;
+
         setClientData(prev => ({
             ...prev,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: newValue
         }));
     };
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // In a real application, you would send clientData to a server here.
         console.log('Client Data Submitted:', clientData);
         // Replaced alert with console log to comply with constraints
-        console.log('Client details saved successfully!'); 
+        console.log('Client details saved successfully!');
     };
 
     // Mock options for selects
@@ -202,9 +208,9 @@ const EditClientForm: React.FC = () => {
         reason: [{ label: 'MCC', value: 'MCC' }, { label: 'Private', value: 'Private' }],
         countries: [{ label: 'England', value: 'England' }, { label: 'Scotland', value: 'Scotland' }, { label: 'Wales', value: 'Wales' }],
         months: [
-            { label: 'Jan', value: 'Jan' }, { label: 'Feb', value: 'Feb' }, { label: 'Mar', value: 'Mar' }, 
-            { label: 'Apr', value: 'Apr' }, { label: 'May', value: 'May' }, { label: 'Jun', value: 'Jun' }, 
-            { label: 'Jul', value: 'Jul' }, { label: 'Aug', value: 'Aug' }, { label: 'Sep', value: 'Sep' }, 
+            { label: 'Jan', value: 'Jan' }, { label: 'Feb', value: 'Feb' }, { label: 'Mar', value: 'Mar' },
+            { label: 'Apr', value: 'Apr' }, { label: 'May', value: 'May' }, { label: 'Jun', value: 'Jun' },
+            { label: 'Jul', value: 'Jul' }, { label: 'Aug', value: 'Aug' }, { label: 'Sep', value: 'Sep' },
             { label: 'Oct', value: 'Oct' }, { label: 'Nov', value: 'Nov' }, { label: 'Dec', value: 'Dec' }
         ],
         days: Array.from({ length: 31 }, (_, i) => ({ label: `${i + 1}`, value: `${i + 1}` })),
@@ -214,23 +220,23 @@ const EditClientForm: React.FC = () => {
     return (
         <div className="min-h-screen font-sans p-4 sm:p-6">
             <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
-                
+
                 {/* Header Banner */}
                 <div className="bg-blue-700 text-white p-3 flex justify-between items-center">
                     <h1 className="text-xl font-semibold">Client &gt; Edit Client &gt; Client Details</h1>
-                   
+
                 </div>
 
                 {/* Main Content Area */}
                 <form onSubmit={handleSubmit} className="p-4 sm:p-6">
-                    
+
                     {/* Top Alert Bar */}
                     <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-lg mb-4 text-sm font-medium">
                         Client Health Update! <a href="#" className="text-blue-700 underline ml-2">Click here to try out the new Client Edit Page</a>
                     </div>
-                    
+
                     <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded-lg mb-6 text-sm">
-                         <span className="font-bold">New</span> - Gender options can now be customised in Company Settings
+                        <span className="font-bold">New</span> - Gender options can now be customised in Company Settings
                     </div>
 
                     {/* EDIT CLIENT SECTION */}
@@ -244,7 +250,7 @@ const EditClientForm: React.FC = () => {
                                 </span>
                             </div>
                         </div>
-                        
+
                         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0">
                             {/* Column 1 */}
                             <div className="space-y-1">
@@ -293,13 +299,13 @@ const EditClientForm: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* ADDRESS DETAILS SECTION */}
                     <div className="border border-gray-300 rounded-lg shadow-md mb-8">
                         <div className="bg-gray-200 px-4 py-3 border-b border-gray-300 rounded-t-lg">
                             <h2 className="text-lg font-bold text-gray-800">&gt; Address Details</h2>
                         </div>
-                        
+
                         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0">
                             {/* Column 1 */}
                             <div className="space-y-1">

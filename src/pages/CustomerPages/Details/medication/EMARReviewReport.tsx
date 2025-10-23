@@ -2,12 +2,8 @@ import {
     Printer,
     Search,
     Table,
-    Edit,
-    Check,
     ChevronRight,
-    ClipboardCheck,
     Pill,
-    Minus,
 } from "lucide-react";
 import React from "react";
 

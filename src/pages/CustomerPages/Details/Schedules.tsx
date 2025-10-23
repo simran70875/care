@@ -213,12 +213,13 @@ const ScheduleCalendar: React.FC<ScheduleCalendarProps> = ({ currentDate, onDate
     const calendarGrid: CalendarDay[] = useMemo(() => getCalendarGrid(currentDate), [currentDate]);
 
     // 2. Group the flat grid array into weeks (rows)
-    const weeks: CalendarDay[][] = calendarGrid.reduce((acc, day) => {
+    const weeks: CalendarDay[][] = calendarGrid.reduce<CalendarDay[][]>((acc, day) => {
         const weekKey = day.week; 
         acc[weekKey] = acc[weekKey] || [];
         acc[weekKey].push(day);
         return acc;
-    }, {} as Record<number, CalendarDay[]>);
+    }, []);
+    
     const weekRows: CalendarDay[][] = Object.values(weeks);
 
     // 3. Navigation Handlers

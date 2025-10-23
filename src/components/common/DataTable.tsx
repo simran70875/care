@@ -11,7 +11,7 @@ interface DataTableProps {
     getRowClassName?: any;
     rowCount?: number;
     pagination?: boolean; // ✅ add this
-    paginationMode?: 'customer' | 'server'; // ✅ add this
+    paginationMode?: 'client' | 'server'; // ✅ add this
     loading?: boolean; // optional: already being used
 }
 export default function DataTable({
@@ -23,9 +23,9 @@ export default function DataTable({
     onRowClick,
     getRowClassName,
     rowCount,
-    // pagination = true,             // ✅ set default
-    paginationMode = "customer",     // ✅ set default
-    loading = false                // ✅ set default
+    // pagination = true,            
+    paginationMode = "client",
+    loading = false
 }: DataTableProps) {
     return (
         <Box

@@ -1,11 +1,9 @@
 import {
-    Pill,
     ChevronRight,
     Plus,
     Printer,
     Table,
     Calendar,
-    Settings,
     HelpCircle,
     ClipboardCheck,
     X,

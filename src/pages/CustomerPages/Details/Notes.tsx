@@ -1,4 +1,3 @@
-import React from 'react';
 
 // --- Mock Data for Notes Tab ---
 const notesData = [

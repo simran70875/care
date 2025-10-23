@@ -3,7 +3,6 @@ import {
     Search,
     Table,
     ChevronRight,
-    Check,
 } from "lucide-react";
 import React from "react";
 

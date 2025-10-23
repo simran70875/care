@@ -50,10 +50,10 @@ const navItems: NavItem[] = [
 ];
 
 // ----------------- OTHER SECTION -----------------
-const othersItems: NavItem[] = [
-  { icon: <PlugInIcon />, name: "Support Desk", path: "/support-desk" },
-  { icon: <PlugInIcon />, name: "Help", path: "/help" },
-];
+// const othersItems: NavItem[] = [
+//   { icon: <PlugInIcon />, name: "Support Desk", path: "/support-desk" },
+//   { icon: <PlugInIcon />, name: "Help", path: "/help" },
+// ];
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isHovered, isMobileOpen, setIsHovered } = useSidebar();

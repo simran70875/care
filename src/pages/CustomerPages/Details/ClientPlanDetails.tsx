@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, CheckCircle, Edit3, Trash2, Copy, FileText, Users, AlertTriangle, ArrowRight, BookOpen, ChevronDown, Archive } from 'lucide-react';
+import { Clock, CheckCircle, BookOpen, ChevronDown, Archive, Users, FileText } from 'lucide-react';
 
 // --- Type Definitions ---
 

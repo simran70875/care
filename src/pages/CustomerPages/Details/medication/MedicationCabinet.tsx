@@ -4,10 +4,7 @@ import {
     Search,
     Edit,
     Archive,
-    History,
     X,
-    Pill,
-    Minus,
 } from "lucide-react";
 import React, { useState } from "react";
 

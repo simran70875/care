@@ -113,10 +113,6 @@ const CustomerSidebar: React.FC = () => {
   const { isExpanded, isHovered, isMobileOpen, setIsHovered } = useSidebar();
   const location = useLocation();
 
-  const [currentMenu, setCurrentMenu] = useState<NavItem[]>(
-    clientDetailsSidebarItems
-  );
-
   // track dropdowns per item, not global
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
     {}
@@ -238,7 +234,7 @@ const CustomerSidebar: React.FC = () => {
         
         </div>
 
-      {renderMenu(currentMenu)}
+      {renderMenu(clientDetailsSidebarItems)}
     </aside>
   );
 };

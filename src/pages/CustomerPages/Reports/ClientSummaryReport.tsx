@@ -2,11 +2,8 @@ import {
     Search,
     ChevronRight,
     Copy,
-    FileText,
-    Printer,
     Table,
 } from "lucide-react";
-import React from "react";
 
 // =================================================================
 // 1. TYPE DEFINITIONS & DUMMY DATA

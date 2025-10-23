@@ -2,13 +2,9 @@ import {
     Edit,
     User,
     Clipboard,
-    Phone,
     Pill,
     Users,
     Clock,
-    Calendar,
-    ChevronRight,
-    ArrowRight,
     BookOpen,
     FileText,
     Printer,
@@ -275,7 +271,7 @@ export default function ClientSummaryProfile() {
                                         className={`p-1 border border-gray-100 text-xs font-medium ${dayIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'} ${item.color} ${item.textColor}`}
                                     >
                                         <div className="font-bold">{item.time}</div>
-                                        <div>{item.text}</div>
+                                        <div>{item.text}{date}</div>
                                         {/* Medication icon for days with meds */}
                                         {(item.text.includes('Meds') && dayIndex % 3 === 0) && <Pill size={12} className="inline-block text-blue-600 mt-0.5" />}
                                     </div>

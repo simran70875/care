@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 // --- Mock Data for Expenses Tab (Dummy Data Added) ---
 const expensesData = [

@@ -1,4 +1,3 @@
-import React from 'react';
 
 // --- Mock Data for Comments Tab ---
 const commentsData = [
