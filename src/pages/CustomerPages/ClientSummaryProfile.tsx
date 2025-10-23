@@ -1,93 +1,176 @@
-import {
-    Edit,
-    User,
-    Clipboard,
-    Pill,
-    Users,
-    Clock,
-    BookOpen,
-    FileText,
-    Printer,
-} from "lucide-react";
+import { Printer, FileEdit, Truck, MapPin, User, ArrowRight, Eye, Edit3, Star } from "lucide-react";
 import React from "react";
 
 // =================================================================
-// 1. TYPE DEFINITIONS & DUMMY DATA
+// 1. TYPE DEFINITIONS & DUMMY DATA (Simplified)
 // =================================================================
 
 interface ClientDetails {
     title: string;
     fullName: string;
+    clientNo: string;
+    gender: string;
     dob: string;
     age: number;
+    maritalStatus: string;
+    jobType: string;
     contactArea: string;
-    address: string;
-    phone: string;
-    nextReview: string;
-    preferredCarers: { name: string, rank: number }[];
-    adminComments: string;
+    addressLine1: string;
+    addressLine2: string;
+    county: string;
+    postCode: string;
+    phoneHome: string;
+    nhsNumber: string;
 }
 
-interface ActiveEvent {
-    time: string;
-    date: string;
-    staff: string;
-    clockIn: string;
-    clockOut: string;
-    duration: string;
-    status: "Active" | "Complete" | "Cancelled";
+interface AboutMeQA {
+    question: string;
+    answer: string;
+}
+
+interface ContactDetail {
+    type: string;
+    contact: string;
+    tel: string;
+    address?: string;
+}
+
+interface PreferredCarer {
+    name: string;
+    hours: string;
+    rating: number;
 }
 
 const clientData: ClientDetails = {
     title: "Mr",
     fullName: "Charles 'O CONNOR",
-    dob: "03/03/1948",
-    age: 77,
+    clientNo: "230691",
+    gender: "Male",
+    dob: "23-Apr-1998",
+    age: 27,
+    maritalStatus: "Partnered",
+    jobType: "MCC SPOT",
     contactArea: "Wythenshawe",
-    address: "80, Crossacres Lane, Wythenshawe, M22 5BY",
-    phone: "07703816503",
-    nextReview: "16 Aug 2025",
-    preferredCarers: [
-        { name: "Sana Akram", rank: 5.0 },
-        { name: "Eva Karkeo", rank: 5.0 },
-        { name: "Bhushan Mehra", rank: 5.0 },
-        { name: "Samuell Griffin", rank: 4.8 },
-        { name: "Tracy Ellen", rank: 4.6 },
-    ],
-    adminComments: "Charles has been assessed as lacking capacity to consent to care and support services. Staff must always respect his right to change his mind or refuse care. Medication records updated; ensure staff are fully briefed and trained with the new routine.",
+    addressLine1: "Longmire Centre, 181 Langley Lane",
+    addressLine2: "Town: Wythenshaw",
+    county: "Manchester",
+    postCode: "M22 4HY",
+    phoneHome: "07744180807",
+    nhsNumber: "638 134 4520",
 };
 
-const activeEvents: ActiveEvent[] = [
-    { time: "18:00", date: "22-10-2025", staff: "Bhushan Mehra", clockIn: "18:00:23", clockOut: "18:30:11", duration: "30 min", status: "Complete" },
-    { time: "15:00", date: "22-10-2025", staff: "Eva Karkeo", clockIn: "15:00:23", clockOut: "15:30:11", duration: "30 min", status: "Complete" },
-    { time: "08:00", date: "22-10-2025", staff: "Samuell Griffin", clockIn: "08:00:23", clockOut: "08:30:11", duration: "30 min", status: "Complete" },
+const aboutMeContent: AboutMeQA[] = [
+    {
+        question: "Q: Who is supporting me in filling out this information",
+        answer: "A: Charlie is able to help us fill this out himself.",
+    },
+    {
+        question: "Q: Please Do",
+        answer: "A: Charlie would like the carers to promote him to get involved in his own care to allow him to build up his strength and ability to complete day to day tasks. Charlie would like carers to be kind a...",
+    },
+    {
+        question: "Q: What is most important to me",
+        answer: "A: Charlie said that regaining his independence and get his life as back to normal as possible is something that is very important to him as he has spent a lot time in hospital (14 months)",
+    },
+    {
+        question: "Q: Please Don't",
+        answer: "A: Please do not try to take my independence away from me, this is something that is very important to me.",
+    },
+    {
+        question: "Q: People who are important to me",
+        answer: "A: Charlie is very close to his brother and sister (and their children), unfortunately his parents have passed away but he is also close to his auntie (who is now his NOK)",
+    },
+    {
+        question: "Q: How and when to support me",
+        answer: "A: I am able to walk short distances with my walking stick however due to having my right arm amputated (I require some additional support with carrying things as I am unable). Please help with all me...",
+    },
+    {
+        question: "Q: How I communicate and how to communicate with me",
+        answer: "A: Charlie is able to communicate effectively verbally in English and would like the care team to communicate the same.",
+    },
+    {
+        question: "Q: Also worth knowing about me",
+        answer: "A: Charlie is a young gentleman that unfortunately was a victim of a stabbing when he was 26. This lead to for a long 14 months in hospital where he had (right arm amputated), multiple other operatio...",
+    },
+    {
+        question: "Q: My wellness",
+        answer: "A: Charlie said both his mental and physical health improve when he is eating well and training well in the gym. This is something he would like to make sure he incorporates into his daily life.",
+    },
 ];
 
-// Dummy data for the daily schedule (quick view grid)
-const scheduleDays = ["22-10-2025", "23-10-2025", "24-10-2025", "25-10-2025", "26-10-2025", "27-10-2025", "28-10-2025"];
-const scheduleItems = [
-    { time: "Morning", text: "Breakfast & Meds", color: "bg-green-100", textColor: "text-green-800" },
-    { time: "Lunch", text: "Prepare Lunch", color: "bg-blue-100", textColor: "text-blue-800" },
-    { time: "Afternoon", text: "Activity/Walk", color: "bg-yellow-100", textColor: "text-yellow-800" },
-    { time: "Dinner", text: "Dinner & Meds", color: "bg-green-100", textColor: "text-green-800" },
-    { time: "Overnight", text: "Tuck In", color: "bg-blue-100", textColor: "text-blue-800" },
+const contactData: ContactDetail[] = [
+    { type: "Next Of Kin", contact: "Charlie O’Connor", tel: "07744180807", address: "148, The Broadway, Wythenshawe, M22 4HY" },
+    { type: "GP Practice", contact: "Dr P S Handa", tel: "0161 998 3326" },
+];
+
+const preferredCarers: PreferredCarer[] = [
+    { name: "Joe Blogs", hours: "1.2", rating: 5 },
+    { name: "Jane Doe", hours: "0.9", rating: 4 },
+    { name: "David Smith", hours: "0.5", rating: 5 },
 ];
 
 // =================================================================
 // 2. HELPER COMPONENTS
 // =================================================================
 
-const SectionHeader: React.FC<{ title: string; children?: React.ReactNode }> = ({ title, children }) => (
-    <div className="flex justify-between items-center pb-2 mb-3 border-b border-blue-200">
-        <h3 className="text-lg font-semibold text-blue-800">{title}</h3>
-        {children}
+/**
+ * DetailItem: A simple key-value pair for small details.
+ */
+const DetailItem: React.FC<{ label: string; value: React.ReactNode }> = ({ label, value }) => (
+    <div className="flex text-sm py-1">
+        <span className="font-medium text-gray-500 w-1/3 min-w-[120px]">{label}:</span>
+        <span className="text-gray-800 font-normal flex-1">{value}</span>
     </div>
 );
 
-const InfoBox: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-    <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 h-full">
-        <p className="text-xs font-semibold text-gray-500 mb-1 uppercase">{title}</p>
-        <div className="text-sm text-gray-700">{children}</div>
+/**
+ * InfoCard: Styled card for content sections (Personal Details and Contact).
+ */
+const InfoCard: React.FC<{ title: string; children: React.ReactNode; isActive?: boolean; icon?: React.ReactNode; editable?: boolean }> = ({ title, children, isActive = false, icon, editable = false }) => (
+    <div className="p-4 bg-white rounded-lg shadow-md border border-gray-200 h-full">
+        <div className="flex justify-between items-start pb-2 mb-2">
+            <h3 className="text-base font-semibold text-gray-700">{title}</h3>
+            <div className="flex items-center gap-2">
+                {isActive && (
+                    <span className="text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full flex items-center gap-1">
+                        Active <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    </span>
+                )}
+                {icon && <div className="flex gap-2 text-white bg-purple-600 p-2 rounded-lg">{icon}</div>}
+                {editable && (
+                    <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                        <Edit3 size={16} />
+                    </button>
+                )}
+            </div>
+        </div>
+        <div className="text-sm text-gray-700 space-y-0.5">
+            {children}
+        </div>
+    </div>
+);
+
+/**
+ * Card for the new four-section grid.
+ */
+const SectionCard: React.FC<{ title: string; children: React.ReactNode; badge?: string; badgeColor?: string }> = ({ title, children, badge, badgeColor = 'bg-gray-100' }) => (
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 h-full flex flex-col justify-between">
+        <div className="flex justify-between items-start mb-2">
+            <h4 className="text-sm font-semibold text-gray-700 uppercase">{title}</h4>
+            <div className="flex items-center space-x-2">
+                {badge && (
+                    <span className={`text-xs font-medium ${badgeColor} text-gray-700 px-2 py-0.5 rounded-full`}>
+                        {badge}
+                    </span>
+                )}
+                <button className="text-gray-400 hover:text-purple-600 transition-colors">
+                    <Edit3 size={14} />
+                </button>
+            </div>
+        </div>
+        <div className="text-xs text-gray-600 flex-grow">
+            {children}
+        </div>
     </div>
 );
 
@@ -95,194 +178,191 @@ const InfoBox: React.FC<{ title: string; children: React.ReactNode }> = ({ title
 // 3. MAIN COMPONENT
 // =================================================================
 
-export default function ClientSummaryProfile() {
+export default function App() {
     return (
-        <div>
-            <div className="rounded-xl overflow-hidden">
+        <div className="min-h-screen bg-gray-50 font-sans p-6">
+            
+            {/* Top Bar / Navigation */}
+            <div className=" flex justify-between items-center mb-6">
+                <div className="flex items-center space-x-2 text-lg font-medium text-gray-700">
+                    <button className="flex items-center px-3 py-1.5 text-sm bg-gray-200 text-gray-700 rounded-md shadow-sm hover:bg-gray-300 transition-colors">
+                        <Printer size={14} className="mr-1" /> Print
+                    </button>
+                    <button className="flex items-center px-3 py-1.5 text-sm bg-gray-200 text-gray-700 rounded-md shadow-sm hover:bg-gray-300 transition-colors">
+                        <FileEdit size={14} className="mr-1" /> Add Private Note
+                    </button>
+                </div>
                 
-                {/* Top Banner and Profile Header */}
-                <div className="bg-blue-700 h-24 relative">
-                    <div className="absolute left-6 bottom-[-50px] flex items-end">
-                        <div className="w-28 h-28 bg-gray-200 rounded-full border-4 border-white flex items-center justify-center text-gray-500">
-                            <User size={60} />
-                        </div>
-                        <h2 className="ml-4 text-3xl font-bold text-gray-800">
-                            {clientData.fullName}
-                        </h2>
-                    </div>
-                    <div className="absolute top-4 right-4 flex space-x-2">
-                        <button className="text-white hover:text-gray-200 bg-blue-600 p-2 rounded-full shadow-md" title="Edit Profile"><Edit size={18} /></button>
-                        <button className="text-white hover:text-gray-200 bg-blue-600 p-2 rounded-full shadow-md" title="Print Profile"><Printer size={18} /></button>
+                {/* View Next Client Profile */}
+                <div className="text-right">
+                    <button className="text-purple-700 text-sm font-semibold hover:underline flex items-center mb-1">
+                        View Next Client Profile <ArrowRight size={14} className="ml-1"/>
+                    </button>
+                    <div className="text-xs text-gray-500">
+                        Favour Abodun - <span className="font-semibold text-purple-600">in</span>
                     </div>
                 </div>
-                <div className="h-12"></div> {/* Spacer for profile picture */}
-
-                <div className="p-6 pt-0 space-y-6">
-
-                    {/* ROW 1: Details, Contact, Admin Comments */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        
-                        {/* Personal Details */}
-                        <div className="py-4">
-                            <SectionHeader title="Personal Details">
-                                <button className="text-gray-500 hover:text-blue-600"><Edit size={16} /></button>
-                            </SectionHeader>
-                            <InfoBox title="Title & Full Name">{clientData.title} {clientData.fullName}</InfoBox>
-                            <InfoBox title="D.O.B / Age">{clientData.dob} / {clientData.age} years</InfoBox>
-                            <InfoBox title="About Me">Q: Why is supporting me important and how can you help me to achieve it?</InfoBox>
-                        </div>
-                        
-                        {/* Contact */}
-                        <div className="py-5">
-                            <SectionHeader title="Contact">
-                                <button className="text-gray-500 hover:text-blue-600"><Edit size={16} /></button>
-                            </SectionHeader>
-                            <InfoBox title="Area & Address">{clientData.contactArea} | {clientData.address}</InfoBox>
-                            <InfoBox title="Contact (Home / Mobile)">{clientData.phone}</InfoBox>
-                            <InfoBox title="GP Practice / Key Worker">Northenden Group Practice | Contact: 0161...</InfoBox>
-                        </div>
-
-                        {/* Admin Comments */}
-                        <div className="py-5">
-                            <SectionHeader title="Admin Comments">
-                                <button className="text-gray-500 hover:text-blue-600"><Edit size={16} /></button>
-                            </SectionHeader>
-                            <div className="p-4 bg-blue-50 text-blue-800 rounded-lg border border-blue-200 h-full">
-                                <p className="text-sm leading-relaxed">{clientData.adminComments}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* ROW 2: Reviews, Assessments, Visits, Preferred Carers */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pt-4 border-t border-gray-200">
-                        
-                        {/* Reviews */}
-                        <div className="col-span-1 py-5">
-                            <SectionHeader title="Reviews">
-                                <button className="text-gray-500 hover:text-blue-600"><FileText size={16} /></button>
-                            </SectionHeader>
-                            <InfoBox title="Next Annual Review Date">{clientData.nextReview}</InfoBox>
-                            <InfoBox title="Last Review Date">14 Aug 2025</InfoBox>
-                        </div>
-
-                        {/* Assessments */}
-                        <div className="col-span-1 py-5">
-                            <SectionHeader title="Assessments">
-                                <button className="text-gray-500 hover:text-blue-600"><Clipboard size={16} /></button>
-                            </SectionHeader>
-                            <div className="text-sm space-y-2">
-                                <div className="flex justify-between border-b py-1"><span>Medication Review:</span><span className="font-medium text-red-600">Not Assessed</span></div>
-                                <div className="flex justify-between border-b py-1"><span>Risk Assessment:</span><span className="font-medium text-green-600">Complete</span></div>
-                                <div className="flex justify-between border-b py-1"><span>Needs/Outcomes:</span><span className="font-medium text-red-600">Not Assessed</span></div>
-                            </div>
-                        </div>
-
-                        {/* Recent Visits */}
-                        <div className="col-span-1 py-5">
-                            <SectionHeader title="Recent Visits">
-                                <button className="text-gray-500 hover:text-blue-600"><Clock size={16} /></button>
-                            </SectionHeader>
-                            <div className="text-sm space-y-2">
-                                {activeEvents.slice(0, 3).map((event, index) => (
-                                    <div key={index} className="flex justify-between border-b py-1">
-                                        <span className="text-xs text-gray-500">{event.date} {event.time}</span>
-                                        <span className="font-medium text-xs text-green-600">{event.staff}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        
-                        {/* Preferred Carers */}
-                        <div className="col-span-1 py-5">
-                            <SectionHeader title="Preferred Carers">
-                                <button className="text-gray-500 hover:text-blue-600"><Users size={16} /></button>
-                            </SectionHeader>
-                            <div className="text-sm space-y-2">
-                                {clientData.preferredCarers.slice(0, 3).map((carer, index) => (
-                                    <div key={index} className="flex justify-between border-b py-1">
-                                        <span className="font-medium">{carer.name}</span>
-                                        <span className="text-yellow-600">{carer.rank} ⭐</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {/* ROW 3: Summary of Active Event and Schedule Quick View */}
-                    <div className="pt-4 border-t border-gray-200">
-                        <SectionHeader title="Summary of active event">
-                            <div className="flex space-x-2">
-                                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View Schedule Breakdown</button>
-                                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View Task Log</button>
-                            </div>
-                        </SectionHeader>
-
-                        {/* Active Event Summary Table */}
-                        <div className="overflow-x-auto mb-6">
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-blue-50">
-                                    <tr>
-                                        {["Time", "Date", "Staff", "Clock In", "Clock Out", "Duration", "Status", "View Log"].map(header => (
-                                            <th key={header} className="px-3 py-2 text-left text-xs font-semibold text-blue-700 uppercase whitespace-nowrap">
-                                                {header}
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {activeEvents.map(event => (
-                                        <tr key={event.time + event.date} className="hover:bg-gray-50">
-                                            <td className="px-3 py-2 text-sm font-medium text-gray-800">{event.time}</td>
-                                            <td className="px-3 py-2 text-sm text-gray-600">{event.date}</td>
-                                            <td className="px-3 py-2 text-sm text-gray-600">{event.staff}</td>
-                                            <td className="px-3 py-2 text-sm text-gray-600">{event.clockIn}</td>
-                                            <td className="px-3 py-2 text-sm text-gray-600">{event.clockOut}</td>
-                                            <td className="px-3 py-2 text-sm text-gray-600">{event.duration}</td>
-                                            <td className="px-3 py-2 text-center">
-                                                <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">Complete</span>
-                                            </td>
-                                            <td className="px-3 py-2 text-center">
-                                                <button className="text-blue-600 hover:text-blue-800"><BookOpen size={16} /></button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        {/* Client Schedule Quick View */}
-                        <SectionHeader title="Charles 'O CONNOR Schedule Quick View" />
-                        <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium">
-                            {scheduleDays.map((date, index) => (
-                                <div key={index} className="p-2 bg-blue-600 text-white rounded-t-lg">
-                                    {new Date(date).toLocaleDateString('en-GB', { weekday: 'short' })}<br/>
-                                    {date.substring(0, 5)}
-                                </div>
-                            ))}
-                            {scheduleDays.map((date, dayIndex) => (
-                                <div key={dayIndex} className="p-2 bg-blue-100 text-blue-800 font-semibold">{date}</div>
-                            ))}
-                            
-                            {scheduleItems.flatMap((item, itemIndex) => 
-                                scheduleDays.map((date, dayIndex) => (
-                                    <div 
-                                        key={`${itemIndex}-${dayIndex}`}
-                                        className={`p-1 border border-gray-100 text-xs font-medium ${dayIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'} ${item.color} ${item.textColor}`}
-                                    >
-                                        <div className="font-bold">{item.time}</div>
-                                        <div>{item.text}{date}</div>
-                                        {/* Medication icon for days with meds */}
-                                        {(item.text.includes('Meds') && dayIndex % 3 === 0) && <Pill size={12} className="inline-block text-blue-600 mt-0.5" />}
-                                    </div>
-                                ))
-                            )}
-                        </div>
-                    </div>
-                </div>
-
-               
             </div>
+
+            {/* Main Content Grid (3 Columns) - All cards within this grid now use h-full to match height */}
+            <div className=" grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* COLUMN 1: Profile Picture */}
+                <div className="col-span-1 flex flex-col">
+                    <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md border border-gray-200 h-full">
+                        
+                        {/* Round Profile Picture with Upload Icon */}
+                        <div className="relative w-48 h-48 mb-6">
+                            {/* Placeholder Image - Round and Purple */}
+                            <div className="w-full h-full bg-purple-600 rounded-full border-4 border-purple-300 flex items-center justify-center text-white shadow-xl">
+                                <User size={96} />
+                            </div>
+                            
+                            {/* Upload Icon - Positioned on top */}
+                            <button 
+                                className="absolute bottom-0 right-0 p-2 bg-purple-700 hover:bg-purple-800 text-white rounded-full shadow-lg border-2 border-white transition-colors"
+                                title="Click to upload profile picture"
+                            >
+                                <FileEdit size={16} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* COLUMN 2: Personal Details */}
+                <div className="col-span-1">
+                    <InfoCard title="Personal Details" isActive={true}>
+                        <DetailItem label="Title" value={clientData.title} />
+                        <DetailItem label="Name" value={<span className="font-semibold text-gray-900">{clientData.fullName}</span>} />
+                        <DetailItem label="Client No" value={clientData.clientNo} />
+                        <DetailItem label="Gender" value={clientData.gender} />
+                        <DetailItem label="DOB" value={`${clientData.dob} (Age: ${clientData.age})`} />
+                        <DetailItem label="Marital Status" value={clientData.maritalStatus} />
+                        <DetailItem label="Job Type" value={clientData.jobType} />
+                    </InfoCard>
+                </div>
+
+                {/* COLUMN 3: Contact */}
+                <div className="col-span-1">
+                    <InfoCard 
+                        title="Contact" 
+                        icon={<> <MapPin size={18} /> <Truck size={18} /> </>}
+                    >
+                        <DetailItem label="Area" value={clientData.contactArea} />
+                        <DetailItem label="Address" value={clientData.addressLine1} />
+                        <DetailItem label="Town" value={clientData.addressLine2} />
+                        <DetailItem label="County" value={clientData.county} />
+                        <DetailItem label="Post Code" value={<span className="font-semibold text-gray-900">{clientData.postCode}</span>} />
+                        <DetailItem label="Phone(Home)" value={clientData.phoneHome} />
+                        <DetailItem label="NHS number" value={clientData.nhsNumber} />
+                    </InfoCard>
+                </div>
+            </div>
+
+            {/* Section for Add Tag Button */}
+            <div className=" mt-6">
+                 <button className="px-6 py-2 bg-orange-400 text-white rounded-lg shadow hover:bg-orange-500 transition-colors text-sm font-medium">
+                    Add Tag
+                </button>
+            </div>
+
+            {/* SECTION 2: About Me */}
+            <div className=" mt-6 bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                
+                {/* Header for About Me section */}
+                <div className="flex justify-between items-center pb-4 mb-4 border-b border-gray-200">
+                    <div className="text-xl font-semibold text-gray-700">About Me</div>
+                    <div className="flex space-x-2">
+                        <button className="flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium px-3 py-1 bg-blue-50 rounded-md">
+                            <Eye size={16} className="mr-1"/> View Updated History
+                        </button>
+                        <button className="flex items-center text-gray-600 hover:text-gray-800">
+                            <Eye size={16} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* "Click to view all" hint */}
+                <p className="text-sm text-gray-500 mb-4">(Click <Eye size={14} className="inline-block mx-1 text-purple-600"/> to view all)</p>
+
+                {/* Q&A Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    {aboutMeContent.map((item, index) => (
+                        <div key={index} className="space-y-1">
+                            <p className="font-semibold text-gray-800">{item.question}</p>
+                            <p className="text-gray-700 pl-4">{item.answer}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Last Saved Date */}
+                <div className="text-right text-xs text-gray-500 mt-6 pt-4 border-t border-gray-100">
+                    Last Saved : 14-10-2025
+                </div>
+            </div> {/* End About Me section */}
+            
+            {/* SECTION 3: New Four Cards Grid */}
+            <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                
+                {/* CARD 1: Client Bio */}
+                <SectionCard title="Client Bio" badge="14-10-2025" badgeColor="bg-blue-100">
+                    <p className="line-clamp-4">
+                        Charlie is an avid football fan and enjoys watching matches with his brother. He has a great sense of humor and loves reading sci-fi novels in his spare time. He is a generally positive person who is focused on regaining his independence and living life to the fullest despite his recent challenges.
+                    </p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">
+                        View all
+                    </button>
+                </SectionCard>
+
+                {/* CARD 2: Contacts */}
+                <SectionCard title="Contacts">
+                    <div className="space-y-2">
+                        {contactData.map((contact, index) => (
+                            <div key={index} className="pb-1 border-b border-gray-100 last:border-b-0">
+                                <p className="text-gray-900 font-medium">{contact.type} - {contact.contact}</p>
+                                <p className="text-gray-500">Tel: {contact.tel}</p>
+                                {contact.address && <p className="text-gray-500 line-clamp-1">{contact.address}</p>}
+                            </div>
+                        ))}
+                    </div>
+                </SectionCard>
+
+                {/* CARD 3: Admin Comments */}
+                <SectionCard title="Admin Comments" badge="4" badgeColor="bg-orange-100">
+                    <p className="text-gray-800 font-medium mb-1">Team Meeting Notes (02/10/2025):</p>
+                    <p className="line-clamp-5">
+                        Reviewed care plan adherence. Carers are advised to continue encouraging independence, particularly during morning routines. Ensure two-carer assistance is consistently provided for transfers. New medication protocol starting next week, see attached notes for details. Carers must sign off on the new protocol immediately.
+                    </p>
+                    <button className="mt-2 text-blue-600 text-xs font-medium hover:underline">
+                        View all
+                    </button>
+                </SectionCard>
+
+                {/* CARD 4: Preferred Carer */}
+                <SectionCard title="Preferred Carer" badge="3.6 Total" badgeColor="bg-green-100">
+                    <div className="text-xs text-gray-800 font-medium grid grid-cols-[1fr_auto_auto] gap-x-2 items-center border-b border-gray-100 py-1">
+                        <span className="text-gray-500">Name</span>
+                        <span className="text-gray-500">Hrs</span>
+                        <span className="text-gray-500">Rating</span>
+                    </div>
+                    {preferredCarers.map((carer, index) => (
+                        <div key={index} className="grid grid-cols-[1fr_auto_auto] gap-x-2 items-center py-1">
+                            <span className="font-semibold text-gray-700">{carer.name}</span>
+                            <span className="text-gray-600">{carer.hours}</span>
+                            <div className="flex items-center">
+                                {Array.from({ length: 5 }, (_, i) => (
+                                    <Star key={i} size={10} fill={i < carer.rating ? "orange" : "gray"} strokeWidth={0} className="text-orange-400" />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                    <div className="text-right mt-2 text-gray-500">
+                        <span className="font-semibold text-xs">Total Hours: 5.8</span>
+                    </div>
+                </SectionCard>
+
+            </div> {/* End New Four Cards Grid */}
+
         </div>
     );
 }
