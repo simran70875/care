@@ -121,10 +121,10 @@ const CustomerSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />
           {(isExpanded || isHovered || isMobileOpen) && (
-            <span className="text-lg font-bold">WeCareChorlton</span>
+            <span className="text-lg font-bold">MarionsCare</span>
           )}
         </Link>
       </div>

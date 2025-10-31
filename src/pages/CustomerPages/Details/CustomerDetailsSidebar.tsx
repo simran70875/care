@@ -61,7 +61,7 @@ const editClientSubMenu = [
 
 /** @type {NavItem[]} */
 const clientDetailsSidebarItems = [
-  { icon: <BoxCubeIcon />, name: "Dashboard", path: "/" },
+  { icon: <BoxCubeIcon />, name: "Dashboard", path: "/dashboard" },
   { icon: <UserIcon />, name: "All Customers", path: "/customers/all" },
   { icon: <UserIcon />, name: "Customer", path: "/customer/view" },
   { icon: <LocateIcon />, name: "Customer Details", path: "/customer/details" }, // Main current view
@@ -209,10 +209,10 @@ const CustomerSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />
           {(isExpanded || isHovered || isMobileOpen) && (
-            <span className="text-lg font-bold">WeCareChorlton</span>
+            <span className="text-lg font-bold">MarionsCare</span>
           )}
         </Link>
 

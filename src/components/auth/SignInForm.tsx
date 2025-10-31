@@ -13,7 +13,7 @@ export default function SignInForm() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (

@@ -26,7 +26,7 @@ export type NavItem = {
 
 // ----------------- MAIN MENU -----------------
 const navItems: NavItem[] = [
-  { icon: <GridIcon />, name: "Main Dashboard", path: "/" },
+  { icon: <GridIcon />, name: "Main Dashboard", path: "/dashboard" },
   {
     icon: <UserCircleIcon />,
     name: "Customers",
@@ -72,7 +72,7 @@ const AppSidebar: React.FC = () => {
 
   const navigate = useNavigate();
   const handleMenuClick = (item: NavItem) => {
-    navigate(item.path || "/");
+    navigate(item.path || "/dashboard");
     if (item.subItems && item.subItems.length > 0) {
       setOpenDropdowns((prev) => ({
         ...prev,
@@ -132,10 +132,10 @@ const AppSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />
           {(isExpanded || isHovered || isMobileOpen) && (
-            <span className="text-lg font-bold">WeCareChorlton</span>
+            <span className="text-lg font-bold">MarionsCare</span>
           )}
         </Link>
       </div>

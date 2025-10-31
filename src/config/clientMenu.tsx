@@ -56,7 +56,7 @@ export const letterSubMenu = [
 ]
 
 export const clientSubMenu: NavItem[] = [
-  { icon: <GridIcon />, name: "Main Dashboard", path: "/" },
+  { icon: <GridIcon />, name: "Main Dashboard", path: "/dashboard" },
   { icon: <Users />, name: "All Customers", path: "/customers/all" },
   { icon: <UserIcon />, name: "Add Customer", path: "/customers/addClient" },
   // { icon: <Calendar />, name: "Schedule", path: "/customers/schedule" },

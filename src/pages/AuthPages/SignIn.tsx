@@ -2,24 +2,6 @@ import PageMeta from "../../components/common/PageMeta";
 import AuthLayout from "./AuthPageLayout";
 import SignInForm from "../../components/auth/SignInForm";
 export default function SignIn() {
-  // const { adminToken } = useAuth();
-
-  // useEffect(() => {
-  //   if (adminToken) {
-  //     try {
-  //       const decoded: DecodedToken = jwtDecode(adminToken);
-  //       if (decoded?.type === "admin" || decoded?.type === "agent") {
-  //         navigate("/");
-  //       }
-  //     } catch (err) {
-  //       console.error("JWT decode failed", err);
-  //     }
-  //   }
-  // }, [adminToken, navigate]);
-
-  // ⛔ Prevent rendering the login page while redirecting
-  // if (adminToken) return null;
-
 
   return (
     <>

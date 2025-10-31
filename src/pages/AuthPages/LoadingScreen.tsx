@@ -24,59 +24,48 @@ enum AnimationPhase {
 // Define the interface for component props
 interface LoadingScreenProps {
     isAppLoading: boolean;
-    children: React.ReactNode;
+    onFinish: () => void;
 }
 
 /**
  * Loading Screen Component for NYCC CRM with a multi-stage animated intro,
  * featuring a sticky logo that triggers a center-out blue flash and then slides to the header.
  */
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ isAppLoading, children }) => {
+const LoadingScreen: React.FC<LoadingScreenProps> = ({ isAppLoading, onFinish }) => {
     const [animationPhase, setAnimationPhase] = useState<AnimationPhase>(AnimationPhase.WHITE_LOGO);
-    const [isLoading, setIsLoading] = useState(true); // Controls overall component visibility
-    const [isFadingOut, setIsFadingOut] = useState(false); // Controls the final opacity transition
-    const [isLogoSliding, setIsLogoSliding] = useState(false); // Controls the slide/shrink animation
+    const [isLoading, setIsLoading] = useState(true);
+    const [isFadingOut, setIsFadingOut] = useState(false);
+    const [isLogoSliding, setIsLogoSliding] = useState(false);
 
-    // --- 1. Control the Intro Animation Sequence (White Logo -> Blue Flash -> Blue Content) ---
     useEffect(() => {
-        // Phase 1: WHITE_LOGO (Logo stays on white for 1.5 seconds)
-        const timer1 = setTimeout(() => {
-            setAnimationPhase(AnimationPhase.BLUE_FLASH);
-        }, 1500);
-
-        // Phase 2: BLUE_FLASH (Flash duration 0.8s)
+        const timer1 = setTimeout(() => setAnimationPhase(AnimationPhase.BLUE_FLASH), 1500);
         const timer2 = setTimeout(() => {
             setAnimationPhase(AnimationPhase.BLUE_CONTENT);
-            setIsLogoSliding(true); // Start logo slide animation immediately after flash ends
-        }, 1500 + 800); // 1.5s (white) + 0.8s (flash duration)
-
+            setIsLogoSliding(true);
+        }, 2300);
         return () => {
             clearTimeout(timer1);
             clearTimeout(timer2);
         };
     }, []);
 
-    // --- 2. Control the Final Fade Out (Only after intro animation and app data is ready) ---
     useEffect(() => {
-        // Proceed if app data is loaded AND the intro animation is done
         if (!isAppLoading && animationPhase === AnimationPhase.BLUE_CONTENT) {
-            const fadeDelay = 1500; // Delay before starting the fade-out
-
-            const fadeTimeout = setTimeout(() => {
-                setIsFadingOut(true);
-            }, fadeDelay);
-
-            // Hide component completely after fade-out transition is complete (fadeDelay + CSS duration 700ms)
+            const fadeDelay = 1500;
+            const fadeTimeout = setTimeout(() => setIsFadingOut(true), fadeDelay);
             const hideTimeout = setTimeout(() => {
                 setIsLoading(false);
+                onFinish(); // 🔥 Notify parent when done
             }, fadeDelay + 700);
-
             return () => {
                 clearTimeout(fadeTimeout);
                 clearTimeout(hideTimeout);
             };
         }
-    }, [isAppLoading, animationPhase]);
+    }, [isAppLoading, animationPhase, onFinish]);
+
+    if (!isLoading) return null;
+
 
     // --- Handlers ---
     const handleContactClick = () => {
@@ -84,10 +73,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isAppLoading, children })
         // window.location.href = '/contact'; // Example for actual navigation
     };
 
-    // If loading is completely finished and fade-out is done, render children
-    if (!isLoading) {
-        return <>{children}</>;
-    }
+
+
+
+
 
     // Determine the wrapper classes
     const wrapperClasses = `fixed top-0 left-0 z-[9999] flex h-screen w-full items-center justify-center overflow-hidden
@@ -100,16 +89,15 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isAppLoading, children })
 
             {/* --------------------------- STICKY ANIMATED LOGO CONTAINER --------------------------- */}
             {/* This container is present throughout phases 1, 2, and 3, allowing it to anchor the position. */}
-            <div 
-                className={`absolute flex flex-col items-center justify-center transform transition-all duration-300 ${
-                    animationPhase === AnimationPhase.WHITE_LOGO ? 'z-50' : 'z-20' // Logo must be above the flash (z-30)
-                } ${isLogoSliding ? 'animate-logo-slide-to-top-sticky' : 'animate-logo-initial-entrance-center'}`}
+            <div
+                className={`absolute flex flex-col items-center justify-center transform transition-all duration-300 ${animationPhase === AnimationPhase.WHITE_LOGO ? 'z-50' : 'z-20' // Logo must be above the flash (z-30)
+                    } ${isLogoSliding ? 'animate-logo-slide-to-top-sticky' : 'animate-logo-initial-entrance-center'}`}
             >
                 <img
                     src="/images/logo.png" // Ensure this path is correct!
                     alt="NYCC CRM Logo - Community Care"
                     // Added bg-white and rounded-full for the white background icon look
-                    className="object-contain drop-shadow-md bg-white rounded-full" 
+                    className="object-contain drop-shadow-md bg-white rounded-full"
                 />
             </div>
 
@@ -123,18 +111,18 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isAppLoading, children })
                     <div className="w-0 h-0 bg-gradient-to-br from-blue-950 to-indigo-900 rounded-full animate-blue-flash" />
                 </div>
             )}
-            
+
             {/* --------------------------- BLUE CONTENT PHASE --------------------------- */}
             {animationPhase === AnimationPhase.BLUE_CONTENT && (
                 <div className="relative flex flex-col items-center p-8 z-10 w-full h-full text-white">
                     {/* Background GridShape */}
                     <GridShape />
-                    
+
                     {/* Main Content Area - Centered */}
                     <div className="flex flex-col items-center justify-center flex-grow text-center max-w-2xl px-4 mt-0">
-                        {/* Main Tagline: "We Care Chorlton" */}
+                        {/* Main Tagline: "Marions Care" */}
                         <h2 className="text-4xl md:text-6xl font-extrabold select-none mb-4 animate-fade-in-up-1">
-                            WE CARE <span className="text-blue-400">CHORLTON</span>
+                            MARIONS  <span className="text-blue-400">CARE</span>
                         </h2>
 
                         {/* Main Messaging: "Managing elderly care made simpler." */}

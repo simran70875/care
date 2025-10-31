@@ -11,12 +11,13 @@ import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./app/store.tsx";
+import { BrowserRouter } from "react-router";
 
 
 // // ✅ Mute console logs in production
 if (import.meta.env.MODE === "production") {
-  console.log = () => {};
-  console.debug = () => {};
+  console.log = () => { };
+  console.debug = () => { };
   // you can keep errors/warnings if you want
   // console.warn = () => {};
   // console.error = () => {};
@@ -29,7 +30,9 @@ createRoot(document.getElementById("root")!).render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider>
           <AppWrapper>
-            <App />
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
           </AppWrapper>
         </ThemeProvider>
       </PersistGate>

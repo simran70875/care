@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 
 import SignIn from "./pages/AuthPages/SignIn";
@@ -53,89 +53,98 @@ import PlanCategoryManagerStatic from "./pages/CustomerPages/PlanCategoryManager
 
 
 export default function App() {
-  console.log("i am in development mode now ");
+  const [showInitialLoader, setShowInitialLoader] = useState(() => {
+    // 👇 only true if not seen before in this browser session
+    const hasSeenLoader = sessionStorage.getItem("hasSeenLoader");
+    return !hasSeenLoader;
+  });
 
-  const [isInitialDataLoading, setIsInitialDataLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // 1. Simulate initial data fetching or app setup check
   useEffect(() => {
-    // Replace with your actual authentication/data loading logic (e.g., API calls)
-    const timer = setTimeout(() => {
-      setIsInitialDataLoading(false); // After 3 seconds, data is 'loaded'
-    }, 5000);
+    if (showInitialLoader) {
+      const timer = setTimeout(() => {
+        sessionStorage.setItem("hasSeenLoader", "true");
+        setShowInitialLoader(false);
+        navigate("/"); // go to signin automatically
+      }, 4000); // show for 4 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [showInitialLoader, navigate]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  if (showInitialLoader) {
+    return <LoadingScreen isAppLoading={true} onFinish={() => { }} />;
+  }
 
   return (
-    <Router>
-      <LoadingScreen isAppLoading={isInitialDataLoading}>
-        <Toaster
-          containerStyle={{ zIndex: 999999999999 }}
-          position="top-right"
-        />
-        <ScrollToTop />
-        <Routes>
-          {/* Protected Admin Routes */}
-          <Route>
-            <Route element={<AppLayout />}>
-              <Route index path="/" element={<Home />} />
-              <Route path="/products" element={<ProductManagement />} />
-              <Route path="/addProduct" element={<AddProductPage />} />
-              <Route path="/editProduct" element={<EditProductPage />} />
-              <Route path="/carers" element={<AgentsPage />} />
-              <Route path="/quotations" element={<OrdersPage />} />
-              <Route path="/quotation-details" element={<QuotationDetailsPage />} />
-              <Route path="/received-orders" element={<ReceivedOrders />} />
-              <Route path="/create-order" element={<CreateNewOrderPage />} />
-              <Route path="/categories" element={<ManageCategoriesPage />} />
-              <Route path="/brands" element={<ManageBrandsPage />} />
-              <Route path="/profile" element={<UserProfiles />} />
-              <Route path="/queries" element={<QueriesPage />} />
-              <Route path="/banners" element={<BannersPage />} />
-              <Route path="/floatingBanner" element={<FloatingBannerPage />} />
-            </Route>
+    <>
+      <Toaster containerStyle={{ zIndex: 999999999999 }} position="top-right" />
+      <ScrollToTop />
+
+      <Routes>
+
+        {/* Auth Page */}
+        <Route path="/" element={<SignIn />} />
+
+        {/* Protected Admin Routes */}
+        <Route>
+          <Route element={<AppLayout />}>
+            <Route index path="/dashboard" element={<Home />} />
+            <Route path="/products" element={<ProductManagement />} />
+            <Route path="/addProduct" element={<AddProductPage />} />
+            <Route path="/editProduct" element={<EditProductPage />} />
+            <Route path="/carers" element={<AgentsPage />} />
+            <Route path="/quotations" element={<OrdersPage />} />
+            <Route path="/quotation-details" element={<QuotationDetailsPage />} />
+            <Route path="/received-orders" element={<ReceivedOrders />} />
+            <Route path="/create-order" element={<CreateNewOrderPage />} />
+            <Route path="/categories" element={<ManageCategoriesPage />} />
+            <Route path="/brands" element={<ManageBrandsPage />} />
+            <Route path="/profile" element={<UserProfiles />} />
+            <Route path="/queries" element={<QueriesPage />} />
+            <Route path="/banners" element={<BannersPage />} />
+            <Route path="/floatingBanner" element={<FloatingBannerPage />} />
           </Route>
+        </Route>
 
-          <Route element={<CustomerLayout />}>
-            <Route path="/customers/all" element={<CustomerPage />} />
-            <Route path="/customers/addClient" element={<AddCustomerPage />} />
-            <Route path="/customer/view" element={<ClientSummaryProfile />} />
-            <Route path="/customers/reports/action-summary" element={<ClientActionsSummary />} />
-            <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
-            <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
-            <Route path="/customers/reports/documents" element={<DocumentListReport />} />
-            <Route path="/customers/reports/print-schedule" element={<SchedulesForPrinting />} />
-            <Route path="/customers/reports/referrals" element={<ReferralReportsPage />} />
-            <Route path="/customers/plan/categories" element={<PlanCategoryManagerStatic />} />
-          </Route>
+        <Route element={<CustomerLayout />}>
+          <Route path="/customers/all" element={<CustomerPage />} />
+          <Route path="/customers/addClient" element={<AddCustomerPage />} />
+          <Route path="/customer/view" element={<ClientSummaryProfile />} />
+          <Route path="/customers/reports/action-summary" element={<ClientActionsSummary />} />
+          <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
+          <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
+          <Route path="/customers/reports/documents" element={<DocumentListReport />} />
+          <Route path="/customers/reports/print-schedule" element={<SchedulesForPrinting />} />
+          <Route path="/customers/reports/referrals" element={<ReferralReportsPage />} />
+          <Route path="/customers/plan/categories" element={<PlanCategoryManagerStatic />} />
+        </Route>
 
-          <Route element={<CustomerDetailsLayout />}>
-            <Route path="/customer/details" element={<CustomerDetailsPage />} />
-            <Route path="/customer/medication" element={<CustomerMedication />} />
-            <Route path="/customer/medication/emar" element={<EMARTracker />} />
-            <Route path="/customer/medication/list" element={<MedicationList />} />
-            <Route path="/customer/medication/list" element={<MedicationList />} />
-            <Route path="/customer/medication/cabinet" element={<MedsCabinet />} />
-            <Route path="/customer/medication/history-report" element={<MedicationHistory />} />
-            <Route path="/customer/medication/audit-history" element={<EMARHistory />} />
-            <Route path="/customer/medication/review-report" element={<EMARReviewReport />} />
-            <Route path="/customer/medication/skip-report" element={<MandatoryMedicationReport />} />
-            <Route path="/customer/medication/review-date-report" element={<MedicationReviewDateReport />} />
-            <Route path="/customer/medication/alerts-dashboard" element={<AlertsDashboard />} />
-            <Route path="/customer/schedule" element={<ClientSchedulePage />} />
-            <Route path="/customer/edit/details" element={<EditClientForm />} />
-            <Route path="/customer/edit/contacts" element={<ClientContactsTable />} />
-            <Route path="/customer/plans/details" element={<ClientPlansOverview />} />
-          </Route>
+        <Route element={<CustomerDetailsLayout />}>
+          <Route path="/customer/details" element={<CustomerDetailsPage />} />
+          <Route path="/customer/medication" element={<CustomerMedication />} />
+          <Route path="/customer/medication/emar" element={<EMARTracker />} />
+          <Route path="/customer/medication/list" element={<MedicationList />} />
+          <Route path="/customer/medication/list" element={<MedicationList />} />
+          <Route path="/customer/medication/cabinet" element={<MedsCabinet />} />
+          <Route path="/customer/medication/history-report" element={<MedicationHistory />} />
+          <Route path="/customer/medication/audit-history" element={<EMARHistory />} />
+          <Route path="/customer/medication/review-report" element={<EMARReviewReport />} />
+          <Route path="/customer/medication/skip-report" element={<MandatoryMedicationReport />} />
+          <Route path="/customer/medication/review-date-report" element={<MedicationReviewDateReport />} />
+          <Route path="/customer/medication/alerts-dashboard" element={<AlertsDashboard />} />
+          <Route path="/customer/schedule" element={<ClientSchedulePage />} />
+          <Route path="/customer/edit/details" element={<EditClientForm />} />
+          <Route path="/customer/edit/contacts" element={<ClientContactsTable />} />
+          <Route path="/customer/plans/details" element={<ClientPlansOverview />} />
+        </Route>
 
-          {/* Auth Page */}
-          <Route path="/signin" element={<SignIn />} />
+        {/* 404 Page */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
-          {/* 404 Page */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </LoadingScreen>
-    </Router>
+
+
+    </>
   );
 }

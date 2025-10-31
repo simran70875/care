@@ -7,8 +7,8 @@ export default function BasicTables() {
   return (
     <>
      <PageMeta
-        title="We Care Chorlton - s "
-        description="Gear Up with We Care Chorlton: Your Trusted Workwear"
+        title="Marions Care - s "
+        description="Gear Up with Marions Care: Your Trusted Workwear"
       />
       <PageBreadcrumb pageTitle="Basic Tables" />
       <div className="space-y-6">
