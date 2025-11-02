@@ -54,7 +54,7 @@ const CustomerSidebar: React.FC = () => {
 
   const renderMenu = (menu: NavItem[]) => {
     return (
-      <ul className={`flex flex-col ml-6 mt-2`}>
+      <ul className={`flex flex-col ml-1 mt-2`}>
         {menu.map((item) => (
           <li key={item.name}>
             {item.subItems ? (
@@ -116,11 +116,13 @@ const CustomerSidebar: React.FC = () => {
   return (
     <aside
       className={`fixed top-0 left-0 bg-white dark:bg-gray-900 h-screen border-r border-gray-200 z-50 transition-all duration-300
-      ${isExpanded || isHovered || isMobileOpen ? "w-[290px]" : "w-[90px]"}`}
+      ${isExpanded || isHovered || isMobileOpen ? "w-[250px]" : "w-[90px]"}`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="p-6 border-b border-gray-200 flex items-center justify-between">
+      <div className="p-6 border-b border-gray-200 flex items-center justify-between"  style={{
+          height: "12vh",
+        }}>
         <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />
           {(isExpanded || isHovered || isMobileOpen) && (
@@ -131,7 +133,7 @@ const CustomerSidebar: React.FC = () => {
 
 
 
-      <div className="overflow-y-auto h-[calc(100vh-180px)]">
+      <div className="overflow-y-auto h-[100%]">
         {/* Adjusted to use renderMenu with newClientSubMenu */}
         {renderMenu(currentMenu)}
       </div>

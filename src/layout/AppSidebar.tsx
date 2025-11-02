@@ -59,7 +59,6 @@ const AppSidebar: React.FC = () => {
   const { isExpanded, isHovered, isMobileOpen, setIsHovered } = useSidebar();
   const location = useLocation();
 
-
   // track dropdowns per item, not global
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
     {}
@@ -83,7 +82,7 @@ const AppSidebar: React.FC = () => {
 
   const renderMenu = (menu: NavItem[]) => {
     return (
-      <ul className={`flex flex-col ml-6 mt-2`}>
+      <ul className={`flex flex-col ml-1 mt-2`}>
         {menu.map((item) => (
           <li key={item.name}>
             {item.subItems ? (
@@ -91,26 +90,27 @@ const AppSidebar: React.FC = () => {
                 <button
                   onClick={() => handleMenuClick(item)}
                   // NOTE: Updated class name for dropdown parent to support active state logic
-                  className={`menu-item flex items-center w-full text-left ${isActive(item.path || "") ? "menu-item-active" : ""
-                    }`}
+                  className={`menu-item flex items-center w-full text-left ${
+                    isActive(item.path || "") ? "menu-item-active" : ""
+                  }`}
                 >
                   <span className="menu-item-icon-size">{item.icon}</span>
                   {(isExpanded || isHovered || isMobileOpen) && (
                     <span className="menu-item-text flex-1">{item.name}</span>
                   )}
                   <ChevronDownIcon
-                    className={`w-4 h-4 transition-transform ${openDropdowns[item.name] ? "rotate-180" : "rotate-0"
-                      }`}
+                    className={`w-4 h-4 transition-transform ${
+                      openDropdowns[item.name] ? "rotate-180" : "rotate-0"
+                    }`}
                   />
                 </button>
-
-
               </>
             ) : (
               <Link
                 to={item.path || "#"}
-                className={`menu-item ${location.pathname === item.path ? "menu-item-active" : "" // Adjusted logic to match path exactly
-                  }`}
+                className={`menu-item ${
+                  location.pathname === item.path ? "menu-item-active" : "" // Adjusted logic to match path exactly
+                }`}
               >
                 <span className="menu-item-icon-size">{item.icon}</span>
                 {(isExpanded || isHovered || isMobileOpen) && (
@@ -127,11 +127,16 @@ const AppSidebar: React.FC = () => {
   return (
     <aside
       className={`fixed top-0 left-0 bg-white dark:bg-gray-900 h-screen border-r border-gray-200 z-50 transition-all duration-300
-      ${isExpanded || isHovered || isMobileOpen ? "w-[290px]" : "w-[90px]"}`}
+      ${isExpanded || isHovered || isMobileOpen ? "w-[250px]" : "w-[90px]"}`}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="p-6 border-b border-gray-200 flex items-center justify-between">
+      <div
+        className="p-6 border-b border-gray-200 flex items-center justify-between"
+        style={{
+          height: "12vh",
+        }}
+      >
         <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />
           {(isExpanded || isHovered || isMobileOpen) && (

@@ -183,7 +183,7 @@ const ReferralReportsPage: React.FC = () => {
                                     filteredData.map((item: ReferralItem) => (
                                         <tr key={item.id} className="hover:bg-purple-50 transition-colors">
                                             <td className="px-3 py-3 text-sm font-medium text-purple-600 whitespace-nowrap cursor-pointer hover:underline">{item.staffName}</td>
-                                            <td className="px-3 py-3 text-sm text-gray-600 whitespace-normal min-w-[200px]">{item.address}</td>
+                                            <td className="px-3 py-3 text-sm text-gray-600 whitespace-normal min-w-[250px]">{item.address}</td>
                                             <td className="px-3 py-3 text-sm text-gray-600 whitespace-nowrap">{item.reason}</td>
                                             <td className="px-3 py-3 text-sm text-blue-600 whitespace-nowrap">{item.referredBy}</td>
                                             <td className="px-3 py-3 text-sm text-gray-600 whitespace-nowrap">{item.contactDate}</td>
