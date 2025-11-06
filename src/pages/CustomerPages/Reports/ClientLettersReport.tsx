@@ -1,7 +1,6 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import {
     Copy,
-    Search,
     Table,
 } from "lucide-react";
 import { Box, Chip, Button, TextField, Typography } from '@mui/material';

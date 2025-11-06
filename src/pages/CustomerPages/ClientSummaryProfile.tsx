@@ -180,7 +180,7 @@ const SectionCard: React.FC<{ title: string; children: React.ReactNode; badge?: 
 
 export default function App() {
     return (
-        <div className="min-h-screen bg-gray-50 font-sans p-6">
+        <div>
             
             {/* Top Bar / Navigation */}
             <div className=" flex justify-between items-center mb-6">

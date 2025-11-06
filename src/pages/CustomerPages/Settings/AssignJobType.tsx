@@ -1,5 +1,5 @@
 import { Box, Button, Typography, TextField } from "@mui/material";
-import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 const AssignJobType = () => {
   const rows = [
@@ -36,7 +36,7 @@ const AssignJobType = () => {
       field: "add",
       headerName: "Add Job Type",
       width: 160,
-      renderCell: (params: GridRenderCellParams) => (
+      renderCell: () => (
         <Button
           size="small"
           variant="outlined"
@@ -59,7 +59,7 @@ const AssignJobType = () => {
       field: "remove",
       headerName: "Remove Job Type",
       width: 180,
-      renderCell: (params: GridRenderCellParams) => (
+      renderCell: () => (
         <Button
           size="small"
           variant="outlined"

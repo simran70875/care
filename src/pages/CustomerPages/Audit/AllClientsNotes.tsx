@@ -1,5 +1,4 @@
-import * as React from "react";
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box,  IconButton, TextField } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Mail } from "lucide-react";
 
@@ -85,7 +84,7 @@ const columns: GridColDef[] = [
     sortable: false,
     flex: 1,
     minWidth: 160,
-   renderCell: (params) => (
+   renderCell: () => (
         <IconButton color="primary">
           <Mail />
         </IconButton>

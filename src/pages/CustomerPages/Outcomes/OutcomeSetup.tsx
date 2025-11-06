@@ -71,7 +71,7 @@ const taskColorMap: { [key: string]: string } = {
 // =================================================================
 
 // Simple Chip component for consistency (replaces MUI Chip)
-const Chip: React.FC<ChipProps> = ({ label, isSelected = false, className, onClick = () => {} }) => (
+const Chip: React.FC<ChipProps> = ({ label, className, onClick = () => {} }) => (
     <div 
         onClick={onClick}
         className={`px-3 py-1 text-xs font-semibold rounded-full cursor-pointer transition ${className}`}

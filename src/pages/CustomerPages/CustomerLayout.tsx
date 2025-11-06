@@ -16,7 +16,7 @@ const LayoutContent: React.FC = () => {
         } ${isMobileOpen ? "ml-0" : ""}`}
       >
         <AppHeader />
-        <div className="mx-auto max-w-(--breakpoint-2xl) p-5" style={{
+        <div className="p-5" style={{
             overflow:'scroll',
             height:'88vh'
         }}>

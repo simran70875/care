@@ -33,9 +33,9 @@ import DocumentListReport from "./pages/CustomerPages/Reports/DocumentListReport
 import SchedulesForPrinting from "./pages/CustomerPages/Reports/SchedulesForPrinting";
 import ReferralReportsPage from "./pages/CustomerPages/Reports/ReferalReports";
 import ClientSchedulePage from "./pages/CustomerPages/Details/Schedules";
-import EditClientForm from "./pages/CustomerPages/Details/EditClientForm";
-import ClientContactsTable from "./pages/CustomerPages/Details/EditContacts";
-import ClientPlansOverview from "./pages/CustomerPages/Details/ClientPlanDetails";
+import EditClientForm from "./pages/CustomerPages/Details/edit/EditClientForm";
+import ClientContactsTable from "./pages/CustomerPages/Details/edit/EditContacts";
+import ClientPlansOverview from "./pages/CustomerPages/Details/Plans/ClientPlanDetails";
 import PlanCategoryManagerStatic from "./pages/CustomerPages/PlanCategoryManager";
 import ClientsFutureStatusTable from "./pages/CustomerPages/Reports/FutureStatus";
 import ClientLettersReportMuiGrid from "./pages/CustomerPages/Reports/ClientLettersReport";
@@ -57,6 +57,20 @@ import AssignedHours from "./pages/CustomerPages/Settings/AssignedHours";
 import PreferredCarer from "./pages/CustomerPages/Settings/PreferredCarer";
 import AssignJobType from "./pages/CustomerPages/Settings/AssignJobType";
 import AssessmentType from "./pages/CustomerPages/Settings/AssessmentTypes";
+import AboutMePage from "./pages/CustomerPages/Details/edit/AboutMePage";
+import AssessmentPage from "./pages/CustomerPages/Details/Assessments/AssessmentsDates";
+import AssessmentCalendar from "./pages/CustomerPages/Details/Assessments/AssessmentCalendar";
+import BodyAssessment from "./pages/CustomerPages/Details/Assessments/BodyAssessment";
+import BodyAssessmentHistory from "./pages/CustomerPages/Details/Assessments/AssessmentHistory";
+import SkinAssessment from "./pages/CustomerPages/Details/Assessments/SkinAssessment";
+import SkinAssessmentHistory from "./pages/CustomerPages/Details/Assessments/SkinAssessmentHistory";
+import DigitalTaskSheet from "./pages/CustomerPages/Details/DigitalTasks/TaskTracker";
+import DigitalTaskSheetHistory from "./pages/CustomerPages/Details/DigitalTasks/DigitalTaskSheetHistory";
+import ClientPlans from "./pages/CustomerPages/Details/Plans/ClientPlans";
+import StartPlan from "./pages/CustomerPages/Details/Plans/StartPlan.tsx";
+import IntakeForm from "./pages/CustomerPages/Details/Plans/IntialCareAssessment.tsx";
+import TagsView from "./pages/CustomerPages/Details/Plans/TagsView.tsx";
+import ClientPlanWebView from "./pages/CustomerPages/Details/Plans/ClientPlanWebView.tsx";
 
 export default function App() {
   const [showInitialLoader, setShowInitialLoader] = useState(() => {
@@ -103,8 +117,7 @@ export default function App() {
         <Route element={<CustomerLayout />}>
           <Route path="/customers/all" element={<CustomerPage />} />
           <Route path="/customers/addClient" element={<AddCustomerPage />} />
-          <Route path="/customer/view" element={<ClientSummaryProfile />} />
-          
+
           <Route path="/customers/reports/action-summary" element={<ClientActionsSummary />} />
           <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
           <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
@@ -141,7 +154,9 @@ export default function App() {
         </Route>
 
         <Route element={<CustomerDetailsLayout />}>
+          <Route path="/customer/view" element={<ClientSummaryProfile />} />
           <Route path="/customer/details" element={<CustomerDetailsPage />} />
+
           <Route path="/customer/medication" element={<CustomerMedication />} />
           <Route path="/customer/medication/emar" element={<EMARTracker />} />
           <Route path="/customer/medication/list" element={<MedicationList />} />
@@ -153,10 +168,31 @@ export default function App() {
           <Route path="/customer/medication/skip-report" element={<MandatoryMedicationReport />} />
           <Route path="/customer/medication/review-date-report" element={<MedicationReviewDateReport />} />
           <Route path="/customer/medication/alerts-dashboard" element={<AlertsDashboard />} />
+
           <Route path="/customer/schedule" element={<ClientSchedulePage />} />
+
           <Route path="/customer/edit/details" element={<EditClientForm />} />
           <Route path="/customer/edit/contacts" element={<ClientContactsTable />} />
+          <Route path="/customer/edit/about-me" element={<AboutMePage />} />
+
+          {/* customer plans  */}
+          <Route path="/customer/plans" element={<ClientPlans />} />
           <Route path="/customer/plans/details" element={<ClientPlansOverview />} />
+          <Route path="/customer/plans/start-plan/:id" element={<StartPlan />} />
+          <Route path="/customer/plans/start-plan/care-assessment" element={<IntakeForm />} />
+          <Route path="/customer/plans/start-plan/tags-view" element={<TagsView />} />
+          <Route path="/customer/plans/plan/web-view" element={<ClientPlanWebView />} />
+
+          {/* customer assessments  */}
+          <Route path="/customer/assessments/dates" element={<AssessmentPage />} />
+          <Route path="/customer/assessments/calendar" element={<AssessmentCalendar />} />
+          <Route path="/customer/assessments/body" element={<BodyAssessment />} />
+          <Route path="/customer/assessments/body/history" element={<BodyAssessmentHistory />} />
+          <Route path="/customer/assessments/skin" element={<SkinAssessment />} />
+          <Route path="/customer/assessments/skin/history" element={<SkinAssessmentHistory />} />
+
+          <Route path="/customer/tasks/tracker" element={<DigitalTaskSheet />} />
+          <Route path="/customer/tasks/history" element={<DigitalTaskSheetHistory />} />
         </Route>
 
         {/* 404 Page */}

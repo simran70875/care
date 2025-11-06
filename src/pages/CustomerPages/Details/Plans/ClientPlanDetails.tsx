@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Clock, CheckCircle, BookOpen, ChevronDown, Archive, Users, FileText } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 // --- Type Definitions ---
 
@@ -105,6 +106,9 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
         console.log(`Plan ID: ${planId}, Action: ${action} triggered.`);
     };
 
+    const navigate = useNavigate();
+
+
     return (
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-x-auto">
             <div className="flex justify-between items-center p-4 border-b border-gray-200">
@@ -122,7 +126,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                     className="p-2 border border-gray-300 rounded-md text-sm focus:ring-purple-500 focus:border-purple-500"
                 />
             </div>
-            
+
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
@@ -151,8 +155,10 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                         const reviewDateClass = isReviewDue ? 'font-bold text-orange-600' : 'text-gray-800';
 
                         return (
+
+                            
                             <tr key={record.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-purple-600 hover:text-purple-700 cursor-pointer">
+                                <td onClick={() => navigate("/customer/plans/plan/web-view")}  className="px-4 py-3 whitespace-nowrap text-sm font-medium text-purple-600 hover:text-purple-700 cursor-pointer">
                                     {record.plan}
                                 </td>
                                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-700">{record.filledBy}</td>
@@ -166,7 +172,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                                 </td>
                                 {/* Action Buttons */}
                                 <td className="px-2 py-3 whitespace-nowrap">
-                                    <button 
+                                    <button
                                         onClick={() => handleAction(record.id, 'View Signature')}
                                         className="text-xs bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700 transition-colors shadow-sm"
                                     >
@@ -174,7 +180,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                                     </button>
                                 </td>
                                 <td className="px-2 py-3 whitespace-nowrap">
-                                    <button 
+                                    <button
                                         onClick={() => handleAction(record.id, 'View Forms')}
                                         className="text-xs bg-sky-500 text-white px-2 py-1 rounded hover:bg-sky-600 transition-colors shadow-sm"
                                     >
@@ -182,13 +188,13 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                                     </button>
                                 </td>
                                 <td className="px-2 py-3 whitespace-nowrap flex space-x-1">
-                                    <button 
+                                    <button
                                         onClick={() => handleAction(record.id, 'Web View')}
                                         className="text-xs bg-gray-300 text-gray-800 px-2 py-1 rounded hover:bg-gray-400 transition-colors shadow-sm"
                                     >
                                         Web View
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={() => handleAction(record.id, 'Print All')}
                                         className="text-xs bg-purple-600 text-white px-2 py-1 rounded hover:bg-purple-700 transition-colors shadow-sm"
                                     >
@@ -197,7 +203,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                                 </td>
                                 <td className="px-2 py-3 whitespace-nowrap">
                                     {record.historyUpdates > 0 ? (
-                                        <button 
+                                        <button
                                             onClick={() => handleAction(record.id, 'View Updated History')}
                                             className="text-xs bg-orange-500 text-white px-2 py-1 rounded hover:bg-orange-600 transition-colors shadow-sm flex items-center"
                                         >
@@ -209,7 +215,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                                     )}
                                 </td>
                                 <td className="px-2 py-3 whitespace-nowrap">
-                                    <button 
+                                    <button
                                         onClick={() => handleAction(record.id, 'Archive')}
                                         className="text-xs bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition-colors shadow-sm flex items-center"
                                     >
@@ -222,7 +228,7 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
                     })}
                 </tbody>
             </table>
-            
+
             {/* Pagination/Summary Footer */}
             <div className="flex justify-between items-center p-4 border-t border-gray-200 text-sm text-gray-700">
                 <p>Showing 1 to {records.length} of {records.length} entries</p>
@@ -238,12 +244,9 @@ const PlansTable: React.FC<{ records: ClientPlanRecord[] }> = ({ records }) => {
 
 // --- Main Component ---
 
-const ClientPlansOverview: React.FC = () => {
-    // Renamed 'Plan Details' to 'All Plans' to reflect the new list view, but keeping the old tab name for now.
-    const [activeTab, setActiveTab] = useState('Plan Details');
-    
-    const tabs = ['Plan Details', 'Outcomes', 'Task List', 'Plan Templates', 'Risk Assessment'];
 
+const ClientPlansOverview: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <div>
             {/* Header: Client Info and Top Actions */}
@@ -257,7 +260,9 @@ const ClientPlansOverview: React.FC = () => {
                             <Archive className="w-4 h-4 inline mr-2" />
                             Archived Completed Plans
                         </button>
-                        <button className="px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors flex items-center">
+                        <button onClick={() => {
+                            navigate('/customer/plans');
+                        }} className="px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors flex items-center">
                             <BookOpen className="w-4 h-4 inline mr-2" />
                             Fill Out New Plan Form
                         </button>
@@ -267,7 +272,7 @@ const ClientPlansOverview: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                
+
                 {/* Secondary Category Navigation (Mimicking the image) */}
                 <div className="mt-4 flex flex-wrap gap-2 text-sm font-medium">
                     <button className="px-3 py-1 bg-purple-600 text-white rounded-t-lg">All Categories</button>
@@ -279,36 +284,8 @@ const ClientPlansOverview: React.FC = () => {
                 </div>
             </div>
 
-            {/* Tab Navigation (Original tabs) */}
-            <div className="flex border-b border-gray-300 mb-6 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`
-                            px-4 py-2 text-sm font-medium transition-all duration-150 ease-in-out whitespace-nowrap
-                            ${activeTab === tab 
-                                ? 'border-b-2 border-purple-600 text-purple-600 font-semibold' 
-                                : 'text-gray-600 hover:text-gray-800 hover:border-b-2 hover:border-gray-300'
-                            }
-                        `}
-                    >
-                        {tab}
-                    </button>
-                ))}
-            </div>
+            <PlansTable records={MOCK_RECORDS} />
 
-            {/* Main Content Area */}
-            {activeTab === 'Plan Details' && (
-                <PlansTable records={MOCK_RECORDS} />
-            )}
-            
-            {/* Placeholder for other tabs */}
-            {activeTab !== 'Plan Details' && (
-                <div className="p-10 text-center text-gray-500 bg-white rounded-xl shadow-lg">
-                    Content for **{activeTab}** goes here.
-                </div>
-            )}
         </div>
     );
 };

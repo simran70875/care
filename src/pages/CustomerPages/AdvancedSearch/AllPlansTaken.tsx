@@ -278,7 +278,7 @@ const AllPlansTaken: React.FC = () => {
       {/* Search Panel */}
       <Paper elevation={0} className="p-4 mb-4 border border-gray-200 rounded">
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={7}>
+          <Grid>
             <Box className="flex items-center gap-2">
               <Typography className="w-28 text-sm text-gray-700">Search Dates</Typography>
               <TextField
@@ -297,10 +297,10 @@ const AllPlansTaken: React.FC = () => {
                 sx={{ width: 180 }}
               />
             </Box>
-           
+
           </Grid>
 
-          <Grid item xs={12} md={5}>
+          <Grid>
             <Box className="flex items-center justify-end gap-3">
               <FormControl size="small" sx={{ minWidth: 140 }}>
                 <InputLabel id="type-label">Type</InputLabel>
@@ -336,21 +336,21 @@ const AllPlansTaken: React.FC = () => {
           </Grid>
 
 
-           <Box className="mt-3 flex items-center gap-6">
-              <Typography className="text-sm text-gray-700">State:</Typography>
-              <FormControlLabel
-                control={<Checkbox checked={active} onChange={() => setActive((v) => !v)} />}
-                label="Active"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={pending} onChange={() => setPending((v) => !v)} />}
-                label="Pending"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={archived} onChange={() => setArchived((v) => !v)} />}
-                label="Archived"
-              />
-            </Box>
+          <Box className="mt-3 flex items-center gap-6">
+            <Typography className="text-sm text-gray-700">State:</Typography>
+            <FormControlLabel
+              control={<Checkbox checked={active} onChange={() => setActive((v) => !v)} />}
+              label="Active"
+            />
+            <FormControlLabel
+              control={<Checkbox checked={pending} onChange={() => setPending((v) => !v)} />}
+              label="Pending"
+            />
+            <FormControlLabel
+              control={<Checkbox checked={archived} onChange={() => setArchived((v) => !v)} />}
+              label="Archived"
+            />
+          </Box>
         </Grid>
 
         <Box className="mt-3 flex items-center gap-3">
@@ -401,8 +401,6 @@ const AllPlansTaken: React.FC = () => {
         <DataGrid
           rows={filteredRows}
           columns={columns}
-          autoHeight
-          disableSelectionOnClick
           pageSizeOptions={[5, 10]}
           initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
           sx={{

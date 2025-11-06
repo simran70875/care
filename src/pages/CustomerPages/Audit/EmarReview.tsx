@@ -153,8 +153,7 @@ export default function EMARReview() {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10, 20, 50]}
+          // rowsPerPageOptions={[10, 20, 50]}
           sx={{
             "& .MuiDataGrid-columnHeaders": {
               backgroundColor: "#ede9fe",

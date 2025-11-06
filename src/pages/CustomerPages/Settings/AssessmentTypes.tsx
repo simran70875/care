@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { MoveRight, Pencil, Plus, Pointer } from "lucide-react";
+import { MoveRight, Pencil, Plus } from "lucide-react";
 import Button from "../../../components/ui/button/Button";
 
 const AssessmentType = () => {

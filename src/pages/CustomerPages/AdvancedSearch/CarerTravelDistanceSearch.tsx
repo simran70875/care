@@ -86,12 +86,7 @@ const columns: GridColDef[] = [
 const CarerSearch: React.FC = () => {
   const [selectedCarer, setSelectedCarer] = useState("Amina Abdalla");
   const [searchTerm, setSearchTerm] = useState("");
-
-  const handleClear = () => {
-    setSelectedCarer("");
-    setSearchTerm("");
-  };
-
+  
   return (
     <Box>
       {/* Header */}

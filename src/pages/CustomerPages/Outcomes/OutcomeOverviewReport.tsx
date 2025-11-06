@@ -3,9 +3,6 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 
 // --- Color Constants (Matching the theme and chart legends) ---
 const PRIMARY_PURPLE = '#6D28D9';
-const PRIMARY_BLUE = '#2563EB';
-const BG_COLOR = '#F9FAFB'; // Light gray background
-const CARD_BG = '#FFFFFF';
 
 // --- Chart Data Definitions for Legends ---
 const overallOutcomeStatuses = [

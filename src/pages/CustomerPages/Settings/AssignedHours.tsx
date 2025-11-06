@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Button, Typography, TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -62,7 +61,7 @@ const AssignedHours = () => {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={20}
+       
           disableColumnMenu
           disableRowSelectionOnClick
           sx={{

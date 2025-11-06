@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Plus, X, Search, ArrowRight, ArrowUp } from 'lucide-react';
+import {  X, Search, ArrowRight, ArrowUp } from 'lucide-react';
 import { Box, Button, Typography, TextField } from '@mui/material';
-import { clientData } from '../Details/Overview';
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS

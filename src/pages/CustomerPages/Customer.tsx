@@ -20,7 +20,7 @@ import {
   Calendar,
   List,
 } from "lucide-react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useCustomerList } from "../../hooks/useCustomerList";
 
 export default function CustomerPage() {
@@ -6891,7 +6891,14 @@ export default function CustomerPage() {
       },
     },
     { field: "_id", headerName: "Customer ID", width: 120 },
-    { field: "name", headerName: "Full Name", width: 180 },
+    {
+      field: "name", headerName: "Full Name", width: 180, renderCell: (params) => (
+        <Link to="/customer/view" className="text-blue-600 hover:underline">
+          {params.value}
+        </Link>
+      )
+
+    },
     { field: "address", headerName: "Address", width: 250 },
     { field: "area", headerName: "Area", width: 120 },
     { field: "phone", headerName: "Phone", width: 150 },
@@ -6927,8 +6934,8 @@ export default function CustomerPage() {
             params.value === "Active"
               ? "success"
               : params.value === "Pending"
-              ? "warning"
-              : "default"
+                ? "warning"
+                : "default"
           }
         />
       ),
@@ -7009,8 +7016,8 @@ export default function CustomerPage() {
         const tags = Array.isArray(params.value)
           ? params.value
           : params.value
-          ? [params.value]
-          : [];
+            ? [params.value]
+            : [];
         return (
           <>
             {tags.map((t: string, i: number) => (
@@ -7039,8 +7046,8 @@ export default function CustomerPage() {
             params.value === "Active"
               ? "success"
               : params.value === "Pending"
-              ? "warning"
-              : "default"
+                ? "warning"
+                : "default"
           }
         />
       ),
@@ -7280,8 +7287,8 @@ export default function CustomerPage() {
             activeTab === 1
               ? pendingColumns // Pending-specific columns
               : activeTab === 2
-              ? archivedColumns // Archived-specific columns
-              : columns // Active/All columns
+                ? archivedColumns // Archived-specific columns
+                : columns // Active/All columns
           }
           getRowId={(row) => row._id}
           pagination
