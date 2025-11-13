@@ -6,7 +6,7 @@ import Button from "../ui/button/Button";
 import { useNavigate } from "react-router";
 
 export default function SignInForm() {
-  const [activeTab, setActiveTab] = useState<"admin" | "agent">("admin");
+  const [activeTab, setActiveTab] = useState<"admin" | "carer">("admin");
   const [showPassword, setShowPassword] = useState(false);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -31,17 +31,17 @@ export default function SignInForm() {
           <div>
             {/* Tabs */}
             <div className="mb-6 flex border-b border-gray-200 dark:border-gray-700">
-              {["admin", "agent"].map((tab) => (
+              {["admin", "carer"].map((tab) => (
                 <button
                   key={tab}
                   type="button"
-                  onClick={() => setActiveTab(tab as "admin" | "agent")}
+                  onClick={() => setActiveTab(tab as "admin" | "carer")}
                   className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === tab
                       ? "border-blue-500 text-blue-600"
                       : "border-transparent text-gray-500 hover:text-gray-700"
                     }`}
                 >
-                  {tab === "admin" ? "Admin" : "Agent"}
+                  {tab === "admin" ? "Admin" : "Carer"}
                 </button>
               ))}
             </div>
