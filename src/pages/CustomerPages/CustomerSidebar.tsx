@@ -121,7 +121,7 @@ const CustomerSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between"  style={{
-          height: "12vh",
+          height: "8vh",
         }}>
         <Link to="/dashboard" className="flex items-center gap-2">
           <img src="/images/logo/logo-icon.svg" alt="Logo" width={32} />

@@ -18,7 +18,7 @@ const LayoutContent: React.FC = () => {
         <AppHeader />
         <div className="p-5" style={{
             overflow:'scroll',
-            height:'88vh'
+            height:'92vh'
         }}>
           <Outlet />
         </div>

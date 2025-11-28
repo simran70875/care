@@ -9,6 +9,10 @@ import {
   Mail,
   GridIcon,
   UserIcon,
+  UserPlus,
+  Calendar,
+  Plane,
+  Clock,
 } from "lucide-react";
 
 export const reportsSubMenu = [
@@ -66,6 +70,79 @@ export const clientSubMenu: NavItem[] = [
   { icon: <BarChart2 />, name: "Audit Pages", path: "/customers/audit" },
   { icon: <Settings />, name: "Settings", path: "/customers/settings", subItems: clientSettingSubMenu },
   { icon: <Mail />, name: "Letter Templates", path: "/customers/letters", subItems: letterSubMenu },
+];
+
+
+export const carerAdvancedSearchSubMenu: NavItem[] = [
+  { name: "HR File Renewal Search", path: "/carers/advanced-search/hr-renewal" },
+  { name: "HR File Calendar", path: "/carers/advanced-search/hr-calendar" },
+  { name: "Carer Advanced Search", path: "/carers/advanced-search/carer" },
+  { name: "Sent E-mail Report", path: "/carers/advanced-search/sent-email-report" },
+  { name: "Carer Availability", path: "/carers/advanced-search/availability" },
+];
+
+export const carerScheduleSearchSubMenu: NavItem[] = [
+  { name: "Conflict Search", path: "/carers/schedule-search/conflict" },
+  { name: "Contract Capacity", path: "/carers/schedule-search/contract-capacity" },
+  { name: "Availability Capacity", path: "/carers/schedule-search/availability-capacity" },
+  { name: "Area Capacity", path: "/carers/schedule-search/area-capacity" },
+  { name: "Carer Event Type Analysis", path: "/carers/schedule-search/carer-event-analysis" },
+  { name: "Client Event Type Analysis", path: "/carers/schedule-search/client-event-analysis" },
+];
+
+export const carerReportsSubMenu: NavItem[] = [
+  { name: "Carer Action Summary", path: "/carers/reports/action-summary" },
+  { name: "Future Status Changes", path: "/carers/reports/status-changes" },
+  { name: "Letters Report", path: "/carers/reports/letters" },
+  { name: "Schedule Travel Distance", path: "/carers/reports/travel-distance" },
+  { name: "All Carer Report", path: "/carers/reports/all" },
+];
+
+export const carerHolidaySubMenu: NavItem[] = [
+  { name: "Holiday Calendar", path: "/carers/holidays/calendar" },
+  { name: "Holiday Overview (Yr)", path: "/carers/holidays/overview-year" },
+  { name: "Leave Overview (Yr)", path: "/carers/holidays/leave-year" },
+  { name: "Holiday & Leave List", path: "/carers/holidays/list" },
+  { name: "Holiday Requests", path: "/carers/holidays/requests" },
+  { name: "Holiday Reports", path: "/carers/holidays/reports" },
+];
+
+export const carerHoursRequestedSubMenu: NavItem[] = [
+  { name: "Requested Hours", path: "/carers/hours/requested" },
+  { name: "Create Rejected Reasons", path: "/carers/hours/rejected-reasons" },
+];
+
+export const carerLetterSubMenu: NavItem[] = [
+  { name: "Completed Templates", path: "/carers/letters/completed" },
+  { name: "Template Editor", path: "/carers/letters/editor" },
+  { name: "Create Template", path: "/carers/letters/create" },
+];
+
+export const carerSettingsSubMenu: NavItem[] = [
+  { name: "HR File Type", path: "/carers/settings/hr-file-type" },
+  { name: "Carer Login", path: "/carers/settings/login" },
+  { name: "Work Phones", path: "/carers/settings/work-phones" },
+  { name: "App Permissions", path: "/carers/settings/app-permissions" },
+  { name: "Email Schedule", path: "/carers/settings/email-schedule" },
+  { name: "HR File Template", path: "/carers/settings/hr-file-template" },
+  { name: "Contract Hours", path: "/carers/settings/contract-hours" },
+  { name: "Availability", path: "/carers/settings/availability" },
+  { name: "Transport Type Set-Up", path: "/carers/settings/transport-type" },
+  { name: "Task Permission Set-Up", path: "/carers/settings/task-permission" },
+];
+
+export const carerSubMenu: NavItem[] = [
+  { icon: <GridIcon />, name: "Dashboard", path: "/dashboard" },
+  { icon: <Users />, name: "All Carers", path: "/carers/all" },
+  { icon: <UserPlus />, name: "Add Carer", path: "/carer/add" },
+  { icon: <Search />, name: "Advanced Search", path: "/carers/advanced-search", subItems: carerAdvancedSearchSubMenu },
+  { icon: <Calendar />, name: "Schedule Search", path: "/carers/schedule-search", subItems: carerScheduleSearchSubMenu },
+  { icon: <FileText />, name: "Reports", path: "/carers/reports", subItems: carerReportsSubMenu },
+  { icon: <Plane />, name: "Holidays / Leave", path: "/carers/holidays", subItems: carerHolidaySubMenu },
+  { icon: <Clock />, name: "Hours Requested", path: "/carers/hours-requested", subItems: carerHoursRequestedSubMenu },
+  { icon: <Mail />, name: "Letter Templates", path: "/carers/letters", subItems: carerLetterSubMenu },
+  { icon: <BarChart2 />, name: "Diversity", path: "/carers/diversity" },
+  { icon: <Settings />, name: "Settings", path: "/carers/settings", subItems: carerSettingsSubMenu },
 ];
 
 

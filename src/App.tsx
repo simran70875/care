@@ -8,7 +8,6 @@ import NotFound from "./pages/OtherPage/NotFound";
 import AppLayout from "./layout/AppLayout";
 
 import Home from "./pages/Dashboard/Home";
-import AgentsPage from "./pages/agents";
 import LoadingScreen from "./pages/AuthPages/LoadingScreen";
 import CustomerPage from "./pages/CustomerPages/Customer";
 import AddCustomerPage from "./pages/CustomerPages/AddCustomerPage";
@@ -71,6 +70,9 @@ import StartPlan from "./pages/CustomerPages/Details/Plans/StartPlan.tsx";
 import IntakeForm from "./pages/CustomerPages/Details/Plans/IntialCareAssessment.tsx";
 import TagsView from "./pages/CustomerPages/Details/Plans/TagsView.tsx";
 import ClientPlanWebView from "./pages/CustomerPages/Details/Plans/ClientPlanWebView.tsx";
+import CarersPage from "./pages/CarerPages/carer.tsx";
+import CarerLayout from "./pages/CarerPages/CarerLayout.tsx";
+import AddCarerPage from "./pages/CarerPages/AddCarerPage.tsx";
 
 export default function App() {
   const [showInitialLoader, setShowInitialLoader] = useState(() => {
@@ -93,7 +95,7 @@ export default function App() {
   }, [showInitialLoader, navigate]);
 
   if (showInitialLoader) {
-    return <LoadingScreen isAppLoading={true} onFinish={() => { }} />;
+    return <LoadingScreen isAppLoading={true} onFinish={() => {}} />;
   }
 
   return (
@@ -102,7 +104,6 @@ export default function App() {
       <ScrollToTop />
 
       <Routes>
-
         {/* Auth Page */}
         <Route path="/" element={<SignIn />} />
 
@@ -110,7 +111,6 @@ export default function App() {
         <Route>
           <Route element={<AppLayout />}>
             <Route index path="/dashboard" element={<Home />} />
-            <Route path="/carers" element={<AgentsPage />} />
           </Route>
         </Route>
 
@@ -118,39 +118,113 @@ export default function App() {
           <Route path="/customers/all" element={<CustomerPage />} />
           <Route path="/customers/addClient" element={<AddCustomerPage />} />
 
-          <Route path="/customers/reports/action-summary" element={<ClientActionsSummary />} />
-          <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
-          <Route path="/customers/reports/summary-pdf" element={<ClientSummaryReport />} />
-          <Route path="/customers/reports/documents" element={<DocumentListReport />} />
-          <Route path="/customers/reports/print-schedule" element={<SchedulesForPrinting />} />
-          <Route path="/customers/reports/referrals" element={<ReferralReportsPage />} />
-          <Route path="/customers/reports/future-status" element={<ClientsFutureStatusTable />} />
-          <Route path="/customers/reports/letters" element={<ClientLettersReportMuiGrid />} />
-          <Route path="/customers/reports/status-hours" element={<StatusChangeHoursAffectedMuiGrid />} />
-          <Route path="/customers/reports/all" element={<AllClientsMuiGrid />} />
+          <Route
+            path="/customers/reports/action-summary"
+            element={<ClientActionsSummary />}
+          />
+          <Route
+            path="/customers/reports/summary-pdf"
+            element={<ClientSummaryReport />}
+          />
+          <Route
+            path="/customers/reports/summary-pdf"
+            element={<ClientSummaryReport />}
+          />
+          <Route
+            path="/customers/reports/documents"
+            element={<DocumentListReport />}
+          />
+          <Route
+            path="/customers/reports/print-schedule"
+            element={<SchedulesForPrinting />}
+          />
+          <Route
+            path="/customers/reports/referrals"
+            element={<ReferralReportsPage />}
+          />
+          <Route
+            path="/customers/reports/future-status"
+            element={<ClientsFutureStatusTable />}
+          />
+          <Route
+            path="/customers/reports/letters"
+            element={<ClientLettersReportMuiGrid />}
+          />
+          <Route
+            path="/customers/reports/status-hours"
+            element={<StatusChangeHoursAffectedMuiGrid />}
+          />
+          <Route
+            path="/customers/reports/all"
+            element={<AllClientsMuiGrid />}
+          />
 
-          <Route path="/customers/plan/categories" element={<PlanCategoryManagerStatic />} />
+          <Route
+            path="/customers/plan/categories"
+            element={<PlanCategoryManagerStatic />}
+          />
 
-          <Route path="/customers/outcomes/setup" element={<AssignEventsToOutcomes />} />
+          <Route
+            path="/customers/outcomes/setup"
+            element={<AssignEventsToOutcomes />}
+          />
           <Route path="/customers/outcomes/tags" element={<ClientTagSetup />} />
-          <Route path="/customers/outcomes/overview" element={<OutcomeOverviewReport />} />
+          <Route
+            path="/customers/outcomes/overview"
+            element={<OutcomeOverviewReport />}
+          />
 
-          <Route path="/customers/advanced-search/contact" element={<ClientContactSearch />} />
-          <Route path="/customers/advanced-search/travel" element={<CustomerTravelDistanceSearch />} />
-          <Route path="/customers/advanced-search/travel-both" element={<CarerSearch />} />
-          <Route path="/customers/advanced-search/tags" element={<ClientTagSetupSearch />} />
-          <Route path="/customers/advanced-search/plans" element={<AllPlansTaken />} />
+          <Route
+            path="/customers/advanced-search/contact"
+            element={<ClientContactSearch />}
+          />
+          <Route
+            path="/customers/advanced-search/travel"
+            element={<CustomerTravelDistanceSearch />}
+          />
+          <Route
+            path="/customers/advanced-search/travel-both"
+            element={<CarerSearch />}
+          />
+          <Route
+            path="/customers/advanced-search/tags"
+            element={<ClientTagSetupSearch />}
+          />
+          <Route
+            path="/customers/advanced-search/plans"
+            element={<AllPlansTaken />}
+          />
 
           <Route path="/customers/audit" element={<AuditPages />} />
-          <Route path="/customers/audit/all-notes" element={<AllClientsNotes />} />
-          <Route path="/customers/audit/medication-tasks-overview" element={<MedicationTaskOverview />} />
-          <Route path="/customers/audit/emar-overview" element={<EMARReview />} />
+          <Route
+            path="/customers/audit/all-notes"
+            element={<AllClientsNotes />}
+          />
+          <Route
+            path="/customers/audit/medication-tasks-overview"
+            element={<MedicationTaskOverview />}
+          />
+          <Route
+            path="/customers/audit/emar-overview"
+            element={<EMARReview />}
+          />
 
-          <Route path="/customers/settings/assigned-hours" element={<AssignedHours />} />
-          <Route path="/customers/settings/preferred-carer" element={<PreferredCarer />} />
-          <Route path="/customers/settings/job-types" element={<AssignJobType />} />
-          <Route path="/customers/settings/assessment-type" element={<AssessmentType />} />
-
+          <Route
+            path="/customers/settings/assigned-hours"
+            element={<AssignedHours />}
+          />
+          <Route
+            path="/customers/settings/preferred-carer"
+            element={<PreferredCarer />}
+          />
+          <Route
+            path="/customers/settings/job-types"
+            element={<AssignJobType />}
+          />
+          <Route
+            path="/customers/settings/assessment-type"
+            element={<AssessmentType />}
+          />
         </Route>
 
         <Route element={<CustomerDetailsLayout />}>
@@ -159,48 +233,118 @@ export default function App() {
 
           <Route path="/customer/medication" element={<CustomerMedication />} />
           <Route path="/customer/medication/emar" element={<EMARTracker />} />
-          <Route path="/customer/medication/list" element={<MedicationList />} />
-          <Route path="/customer/medication/list" element={<MedicationList />} />
-          <Route path="/customer/medication/cabinet" element={<MedsCabinet />} />
-          <Route path="/customer/medication/history-report" element={<MedicationHistory />} />
-          <Route path="/customer/medication/audit-history" element={<EMARHistory />} />
-          <Route path="/customer/medication/review-report" element={<EMARReviewReport />} />
-          <Route path="/customer/medication/skip-report" element={<MandatoryMedicationReport />} />
-          <Route path="/customer/medication/review-date-report" element={<MedicationReviewDateReport />} />
-          <Route path="/customer/medication/alerts-dashboard" element={<AlertsDashboard />} />
+          <Route
+            path="/customer/medication/list"
+            element={<MedicationList />}
+          />
+          <Route
+            path="/customer/medication/list"
+            element={<MedicationList />}
+          />
+          <Route
+            path="/customer/medication/cabinet"
+            element={<MedsCabinet />}
+          />
+          <Route
+            path="/customer/medication/history-report"
+            element={<MedicationHistory />}
+          />
+          <Route
+            path="/customer/medication/audit-history"
+            element={<EMARHistory />}
+          />
+          <Route
+            path="/customer/medication/review-report"
+            element={<EMARReviewReport />}
+          />
+          <Route
+            path="/customer/medication/skip-report"
+            element={<MandatoryMedicationReport />}
+          />
+          <Route
+            path="/customer/medication/review-date-report"
+            element={<MedicationReviewDateReport />}
+          />
+          <Route
+            path="/customer/medication/alerts-dashboard"
+            element={<AlertsDashboard />}
+          />
 
           <Route path="/customer/schedule" element={<ClientSchedulePage />} />
 
           <Route path="/customer/edit/details" element={<EditClientForm />} />
-          <Route path="/customer/edit/contacts" element={<ClientContactsTable />} />
+          <Route
+            path="/customer/edit/contacts"
+            element={<ClientContactsTable />}
+          />
           <Route path="/customer/edit/about-me" element={<AboutMePage />} />
 
           {/* customer plans  */}
           <Route path="/customer/plans" element={<ClientPlans />} />
-          <Route path="/customer/plans/details" element={<ClientPlansOverview />} />
-          <Route path="/customer/plans/start-plan/:id" element={<StartPlan />} />
-          <Route path="/customer/plans/start-plan/care-assessment" element={<IntakeForm />} />
-          <Route path="/customer/plans/start-plan/tags-view" element={<TagsView />} />
-          <Route path="/customer/plans/plan/web-view" element={<ClientPlanWebView />} />
+          <Route
+            path="/customer/plans/details"
+            element={<ClientPlansOverview />}
+          />
+          <Route
+            path="/customer/plans/start-plan/:id"
+            element={<StartPlan />}
+          />
+          <Route
+            path="/customer/plans/start-plan/care-assessment"
+            element={<IntakeForm />}
+          />
+          <Route
+            path="/customer/plans/start-plan/tags-view"
+            element={<TagsView />}
+          />
+          <Route
+            path="/customer/plans/plan/web-view"
+            element={<ClientPlanWebView />}
+          />
 
           {/* customer assessments  */}
-          <Route path="/customer/assessments/dates" element={<AssessmentPage />} />
-          <Route path="/customer/assessments/calendar" element={<AssessmentCalendar />} />
-          <Route path="/customer/assessments/body" element={<BodyAssessment />} />
-          <Route path="/customer/assessments/body/history" element={<BodyAssessmentHistory />} />
-          <Route path="/customer/assessments/skin" element={<SkinAssessment />} />
-          <Route path="/customer/assessments/skin/history" element={<SkinAssessmentHistory />} />
+          <Route
+            path="/customer/assessments/dates"
+            element={<AssessmentPage />}
+          />
+          <Route
+            path="/customer/assessments/calendar"
+            element={<AssessmentCalendar />}
+          />
+          <Route
+            path="/customer/assessments/body"
+            element={<BodyAssessment />}
+          />
+          <Route
+            path="/customer/assessments/body/history"
+            element={<BodyAssessmentHistory />}
+          />
+          <Route
+            path="/customer/assessments/skin"
+            element={<SkinAssessment />}
+          />
+          <Route
+            path="/customer/assessments/skin/history"
+            element={<SkinAssessmentHistory />}
+          />
 
-          <Route path="/customer/tasks/tracker" element={<DigitalTaskSheet />} />
-          <Route path="/customer/tasks/history" element={<DigitalTaskSheetHistory />} />
+          <Route
+            path="/customer/tasks/tracker"
+            element={<DigitalTaskSheet />}
+          />
+          <Route
+            path="/customer/tasks/history"
+            element={<DigitalTaskSheetHistory />}
+          />
         </Route>
 
+        <Route element={<CarerLayout />}>
+          <Route path="/carers/all" element={<CarersPage />} />
+          <Route path="/carer/add" element={<AddCarerPage />} />
+        </Route>
         {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-
-
     </>
   );
 }

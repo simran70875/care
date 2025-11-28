@@ -33,7 +33,7 @@ const navItems: NavItem[] = [
     path: "/customers/all",
     subItems: clientSubMenu,
   },
-  { icon: <UserCircleIcon />, name: "Carers", path: "/carers" },
+  { icon: <UserCircleIcon />, name: "Carers", path: "/carers/all" },
   { icon: <ListIcon />, name: "Notes", path: "/notes" },
   { icon: <CalenderIcon />, name: "Messages", path: "/messages" },
   { icon: <PageIcon />, name: "Noticeboard", path: "/noticeboard" },
@@ -134,7 +134,7 @@ const AppSidebar: React.FC = () => {
       <div
         className="p-6 border-b border-gray-200 flex items-center justify-between"
         style={{
-          height: "12vh",
+          height: "8vh",
         }}
       >
         <Link to="/dashboard" className="flex items-center gap-2">

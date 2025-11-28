@@ -30,7 +30,7 @@ const PrivateRoute = () => {
       return <Navigate to="/signin" />;
     }
 
-    if (decoded?.type !== "admin" && decoded?.type !== "agent") {
+    if (decoded?.type !== "admin" && decoded?.type !== "carer") {
       return <Navigate to="/signin" />;
     }
 

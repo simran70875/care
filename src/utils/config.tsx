@@ -52,10 +52,10 @@ export const API_PATHS = {
   UPLOAD_PRODUCTS_CSV: `${BASE_URL}/api/products/upload-csv`,
 
   //agents
-  AGENTS: `${BASE_URL}/api/agent`,
-  ADD_AGENT: `${BASE_URL}/api/agent/add`,
-  DELETE_AGENT: `${BASE_URL}/api/agent`,
-  EDIT_AGENT: `${BASE_URL}/api/agent`,
+  AGENTS: `${BASE_URL}/api/carer`,
+  ADD_AGENT: `${BASE_URL}/api/carer/add`,
+  DELETE_AGENT: `${BASE_URL}/api/carer`,
+  EDIT_AGENT: `${BASE_URL}/api/carer`,
 
   // /QUERIES
   QUERIES: `${BASE_URL}/api/query/queries`,
@@ -77,5 +77,5 @@ export const API_PATHS = {
 
   COMPARE_ORDERS: `${BASE_URL}/api/order/compare-orders`,
   MONTHLY_PROFITS: `${BASE_URL}/api/order/monthly-profits`,
-  AGENTS_PROFIT: `${BASE_URL}/api/order/agent-monthly-profits`,
+  AGENTS_PROFIT: `${BASE_URL}/api/order/carer-monthly-profits`,
 };
