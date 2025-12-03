@@ -70,9 +70,26 @@ import StartPlan from "./pages/CustomerPages/Details/Plans/StartPlan.tsx";
 import IntakeForm from "./pages/CustomerPages/Details/Plans/IntialCareAssessment.tsx";
 import TagsView from "./pages/CustomerPages/Details/Plans/TagsView.tsx";
 import ClientPlanWebView from "./pages/CustomerPages/Details/Plans/ClientPlanWebView.tsx";
-import CarersPage from "./pages/CarerPages/carer.tsx";
 import CarerLayout from "./pages/CarerPages/CarerLayout.tsx";
 import AddCarerPage from "./pages/CarerPages/AddCarerPage.tsx";
+import AllHrFiles from "./pages/CarerPages/AdvancedSearch/AllHrFiles.tsx";
+import CarersPage from "./pages/CarerPages/Carer.tsx";
+import HrFileCalendar from "./pages/CarerPages/AdvancedSearch/HrFileCalendar.tsx";
+import CarerAdvanceSearch from "./pages/CarerPages/AdvancedSearch/CarerAdvanceSearch.tsx";
+import CarerEmailLog from "./pages/CarerPages/AdvancedSearch/CarerEmailLog.tsx";
+import CarerAvailability from "./pages/CarerPages/AdvancedSearch/CarerAvailability.tsx";
+import CarerConflicts from "./pages/CarerPages/ScheduleSearch/CarerConflicts.tsx";
+import ContractedCapacityAnalysis from "./pages/CarerPages/ScheduleSearch/ContractedCapacityAnalysis.tsx";
+import AvailabilityCapacityAnalysis from "./pages/CarerPages/ScheduleSearch/AvailabilityCapacityAnalysis.tsx";
+import AreaCapacityAnalysis from "./pages/CarerPages/ScheduleSearch/AreaCapacityAnalysis.tsx";
+import AreaEventTypeAnalysis from "./pages/CarerPages/ScheduleSearch/EventCapacityAnalysis.tsx";
+import ClientEventCapacityAnalysis from "./pages/CarerPages/ScheduleSearch/ClientEventCapacityAnalysis.tsx";
+import ActionsReport from "./pages/CarerPages/Reports/CarerActionsSummary.tsx";
+import CarersFutureStatusChanges from "./pages/CarerPages/Reports/CarersFutureStatusChanges.tsx";
+import CarerLettersReport from "./pages/CarerPages/Reports/CarerLettersReport.tsx";
+import AllCarersReport from "./pages/CarerPages/Reports/AllCarersReports.tsx";
+import CarerHolidayCalendar from "./pages/CarerPages/Holidays/CarerHolidayCalendar.tsx";
+import HolidaysOverviewYear from "./pages/CarerPages/Holidays/HolidaysOverviewYear.tsx";
 
 export default function App() {
   const [showInitialLoader, setShowInitialLoader] = useState(() => {
@@ -114,6 +131,7 @@ export default function App() {
           </Route>
         </Route>
 
+        {/* customer layouts screens */}
         <Route element={<CustomerLayout />}>
           <Route path="/customers/all" element={<CustomerPage />} />
           <Route path="/customers/addClient" element={<AddCustomerPage />} />
@@ -337,11 +355,34 @@ export default function App() {
             element={<DigitalTaskSheetHistory />}
           />
         </Route>
+        {/* customer layouts screens */}
 
+        {/* Carer layouts screens */}
         <Route element={<CarerLayout />}>
           <Route path="/carers/all" element={<CarersPage />} />
           <Route path="/carer/add" element={<AddCarerPage />} />
+          <Route path="/carers/advanced-search/hr-renewal" element={<AllHrFiles />} />
+          <Route path="/carers/advanced-search/hr-calendar" element={<HrFileCalendar />} />
+          <Route path="/carers/advanced-search/carer" element={<CarerAdvanceSearch />} />
+          <Route path="/carers/advanced-search/sent-email-report" element={<CarerEmailLog />} />
+          <Route path="/carers/advanced-search/availability" element={<CarerAvailability />} />
+
+          <Route path="/carers/schedule-search/conflict" element={<CarerConflicts />} />
+          <Route path="/carers/schedule-search/contract-capacity" element={<ContractedCapacityAnalysis />} />
+          <Route path="/carers/schedule-search/availability-capacity" element={<AvailabilityCapacityAnalysis />} />
+          <Route path="/carers/schedule-search/area-capacity" element={<AreaCapacityAnalysis />} />
+          <Route path="/carers/schedule-search/carer-event-analysis" element={<AreaEventTypeAnalysis />} />
+          <Route path="/carers/schedule-search/client-event-analysis" element={<ClientEventCapacityAnalysis />} />
+
+          <Route path="/carers/reports/action-summary" element={<ActionsReport />} />
+          <Route path="/carers/reports/status-changes" element={<CarersFutureStatusChanges />} />
+          <Route path="/carers/reports/letters" element={<CarerLettersReport />} />
+          <Route path="/carers/reports/all" element={<AllCarersReport />} />
+
+          <Route path="/carers/holidays/calendar" element={<CarerHolidayCalendar />} />
+          <Route path="/carers/holidays/overview-year" element={<HolidaysOverviewYear />} />
         </Route>
+
         {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
       </Routes>

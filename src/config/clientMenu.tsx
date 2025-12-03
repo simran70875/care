@@ -94,7 +94,6 @@ export const carerReportsSubMenu: NavItem[] = [
   { name: "Carer Action Summary", path: "/carers/reports/action-summary" },
   { name: "Future Status Changes", path: "/carers/reports/status-changes" },
   { name: "Letters Report", path: "/carers/reports/letters" },
-  { name: "Schedule Travel Distance", path: "/carers/reports/travel-distance" },
   { name: "All Carer Report", path: "/carers/reports/all" },
 ];
 
