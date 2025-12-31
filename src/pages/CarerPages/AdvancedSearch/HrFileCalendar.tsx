@@ -26,19 +26,17 @@ const PRIMARY_PURPLE = "bg-purple-600 hover:bg-purple-700";
 const TEXT_PURPLE = "text-purple-600";
 
 interface HrCalendarEvent {
-  id: number;
+  id: string;
   title: string;
   start: string;
   allDay: boolean;
-  // These are the custom properties you defined:
   type: "Required" | "Additional";
   status: "Active" | "Expired" | "Due" | "End of Service" | "Required";
 }
 
 const initialHrEvents: HrCalendarEvent[] = [
-  // Mock data reused for consistency
   {
-    id: 1,
+    id: "1",
     title: "Tilles T Aid Certificate (Required)",
     start: "2025-12-04",
     type: "Required",
@@ -46,7 +44,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 2,
+    id: "2",
     title: "Tilles Aid Expired HR File",
     start: "2025-12-05",
     type: "Required",
@@ -54,7 +52,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 3,
+    id: "3",
     title: "First Aid Certificate (Additional Requirement)",
     start: "2025-12-05",
     type: "Additional",
@@ -62,7 +60,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 4,
+    id: "4",
     title: "Tilles T Aid Certificate (Required)",
     start: "2025-12-11",
     type: "Required",
@@ -70,7 +68,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 5,
+    id: "5",
     title: "Tilles T Aid Certificate (Required)",
     start: "2025-12-12",
     type: "Required",
@@ -78,7 +76,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 6,
+    id: "6",
     title: "Tilles T Aid Certificate (Required)",
     start: "2025-12-13",
     type: "Required",
@@ -86,7 +84,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 7,
+    id: "7",
     title: "Due HR File Expired HR File",
     start: "2025-12-15",
     type: "Required",
@@ -94,7 +92,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 8,
+    id: "8",
     title: "Tilles T Aid Certificate (Additional Req)",
     start: "2025-12-17",
     type: "Additional",
@@ -102,7 +100,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 9,
+    id: "9",
     title: "Pancoast HR File (Expired HR File)",
     start: "2025-12-18",
     type: "Required",
@@ -110,7 +108,7 @@ const initialHrEvents: HrCalendarEvent[] = [
     allDay: true,
   },
   {
-    id: 10,
+    id: "10",
     title: "First Aid Certificate (Additional Req)",
     start: "2025-12-22",
     type: "Additional",
@@ -236,9 +234,7 @@ const HrFileCalendar: React.FC = () => {
 
   const filteredEvents = useMemo(() => {
     return initialHrEvents.filter((event) => {
-      const textMatch =
-        filterText === "" ||
-        event.title.toLowerCase().includes(filterText.toLowerCase());
+      const textMatch = filterText === "" || event.title.toLowerCase().includes(filterText.toLowerCase());
 
       const typeMatch =
         (filters.allHrFile && event.type === "Required") ||
@@ -248,21 +244,6 @@ const HrFileCalendar: React.FC = () => {
     });
   }, [filters, filterText]);
 
-  // 2. Map the HrCalendarEvent data to FullCalendar's EventInput format.
-  // We use 'extendedProps' to pass your custom fields (type, status) to the calendar.
-  const mappedEvents = useMemo(() => {
-    return filteredEvents.map((event) => ({
-      id: event.id,
-      title: event.title,
-      start: event.start,
-      allDay: event.allDay,
-      // Custom properties go here:
-      extendedProps: {
-        type: event.type,
-        status: event.status,
-      },
-    }));
-  }, [filteredEvents]);
 
   // Custom function to render event content with Tailwind styling
   const renderEventContent = (eventInfo: EventContentArg) => {
@@ -468,7 +449,7 @@ const HrFileCalendar: React.FC = () => {
             plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             initialDate="2025-12-01"
-            events={mappedEvents}
+            events={filteredEvents}
             eventContent={renderEventContent}
             dayMaxEvents={true}
             weekends={true}

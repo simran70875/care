@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, TextField, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS

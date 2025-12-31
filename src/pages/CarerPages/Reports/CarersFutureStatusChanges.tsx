@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, TextField, Paper } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS
@@ -113,10 +112,6 @@ const toolbarButtons = [
 
 const CarersFutureStatusChanges: React.FC = () => {
   const [globalSearch, setGlobalSearch] = useState("");
-  const [columnSearches, setColumnSearches] = useState<Record<string, string>>(
-    {}
-  ); // State for individual column searches
-
   // Custom component to simulate the header with buttons on the right
   const HeaderControls = () => (
     <Box className="px-4 py-3 bg-gray-100 border-b border-gray-300 flex justify-between items-center">

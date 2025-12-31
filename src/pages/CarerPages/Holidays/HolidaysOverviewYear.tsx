@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -9,7 +9,6 @@ import {
   Checkbox,
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS

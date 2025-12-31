@@ -8,18 +8,14 @@ import {
   Select,
   FormControl,
   InputLabel,
-  Checkbox,
-  FormControlLabel,
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search, ChevronDown } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS
 // =================================================================
 
 const PRIMARY_PURPLE = "#6B21A8"; // Deep Purple for buttons and accents
-const LIGHT_PURPLE = "#F3E8FF"; // Light Purple background for filter section
 
 interface EmailLogEntry {
   id: number;
@@ -48,13 +44,7 @@ const clientAreas = [
   "Didsbury",
   "Longsight",
 ];
-const carerAreas = [
-  "Select Area",
-  "All Carer Area",
-  "All in Scan",
-  "Trafford",
-  "Wythenshawe",
-]; // Updated to match screenshot
+
 
 const dummyRows: EmailLogEntry[] = [
   // Keeping just the first few rows for brevity, as requested
@@ -181,10 +171,7 @@ const columns: GridColDef<EmailLogEntry>[] = [
 
 const CarerEmailLog: React.FC = () => {
   const [selectedLogType, setSelectedLogType] = useState(emailLogTypes[0]);
-  const [startDate, setStartDate] = useState("2025-11-03"); // Start date from screenshot: 03-11-2025
-  const [endDate, setEndDate] = useState("2025-12-03"); // End date from screenshot: 03-12-2025
   const [selectedClientArea, setSelectedClientArea] = useState(clientAreas[0]);
-  const [selectedCarerAreas, setSelectedCarerAreas] = useState<string[]>([]);
   const [emailSearchTerm, setEmailSearchTerm] = useState("");
   const [mainSearchTerm, setMainSearchTerm] = useState("");
 
@@ -227,7 +214,6 @@ const CarerEmailLog: React.FC = () => {
                 <TextField
                   size="small"
                   type="date"
-                  defaultValue={startDate}
                   className="bg-white border-gray-300 shadow-sm"
                   sx={{ width: 130 }}
                 />
@@ -237,7 +223,7 @@ const CarerEmailLog: React.FC = () => {
                 <TextField
                   size="small"
                   type="date"
-                  defaultValue={endDate}
+                  
                   className="bg-white border-gray-300 shadow-sm"
                   sx={{ width: 130 }}
                 />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, TextField, IconButton } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 // Removed dependency: import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { Search } from "lucide-react";
 
@@ -332,13 +332,13 @@ const toolbarButtons = [
 // =================================================================
 
 const CarerConflicts: React.FC = () => {
-  const [startDate, setStartDate] = useState("01-12-2025");
-  const [endDate, setEndDate] = useState("08-12-2025");
+  // const [startDate, setStartDate] = useState("01-12-2025");
+  // const [endDate, setEndDate] = useState("08-12-2025");
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
     // This is where API call/data fetching would happen in a real application
-    console.log(`Searching conflicts from ${startDate} to ${endDate}`);
+    // console.log(`Searching conflicts from ${startDate} to ${endDate}`);
   };
 
   const filteredRows = dummyConflicts
@@ -370,7 +370,7 @@ const CarerConflicts: React.FC = () => {
             size="small"
             type="text"
             label="Start Date"
-            defaultValue={startDate}
+           
             className="bg-white"
             sx={{ width: 150 }}
           />
@@ -382,7 +382,6 @@ const CarerConflicts: React.FC = () => {
             size="small"
             type="text"
             label="End Date"
-            defaultValue={endDate}
             className="bg-white"
             sx={{ width: 150 }}
           />

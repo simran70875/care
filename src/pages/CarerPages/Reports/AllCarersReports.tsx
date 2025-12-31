@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, TextField, Paper } from "@mui/material";
+import { Box, Typography, Button, TextField } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS
@@ -167,9 +166,6 @@ const toolbarButtons = [
 const AllCarersReport: React.FC = () => {
   const [globalSearch, setGlobalSearch] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("All"); // Default to 'All Carers'
-  const [columnSearches, setColumnSearches] = useState<Record<string, string>>(
-    {}
-  ); // State for individual column searches
 
   // Custom component for the Header with status filter buttons
   const HeaderControls = () => (

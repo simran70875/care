@@ -24,7 +24,7 @@ const BLUE_HOLIDAY = "#B3E5FC"; // For the multi-day block (Dec 24 - Jan 1)
 const YELLOW_DAY = "#FFF9C4"; // For a single highlighted day (Dec 2)
 
 interface HolidayCalendarEvent {
-  id: number;
+  id: string;
   title: string;
   start: string;
   end?: string; // Optional end date for multi-day events
@@ -36,28 +36,28 @@ interface HolidayCalendarEvent {
 const initialHolidayEvents: HolidayCalendarEvent[] = [
   // Red block events (Dec 23-26) - Appear as single-day events on top
   {
-    id: 1,
+    id: "1",
     title: "Holiday Day 1",
     start: "2025-12-23",
     color: RED_HOLIDAY,
     textColor: 'white',
   },
   {
-    id: 2,
+    id: "2",
     title: "Holiday Day 2",
     start: "2025-12-24",
     color: RED_HOLIDAY,
     textColor: 'white',
   },
   {
-    id: 3,
+    id: "3",
     title: "Holiday Day 3",
     start: "2025-12-25",
     color: RED_HOLIDAY,
     textColor: 'white',
   },
   {
-    id: 4,
+    id: "4",
     title: "Holiday Day 4",
     start: "2025-12-26",
     color: RED_HOLIDAY,
@@ -67,7 +67,7 @@ const initialHolidayEvents: HolidayCalendarEvent[] = [
   // Note: FullCalendar only applies background color to *all day* events if a class is used on the event object.
   // We'll use a standard FullCalendar event style here for simplicity, focusing on the color.
   {
-    id: 5,
+    id: "5",
     title: '', // Empty title to match the look of a background block
     start: "2025-12-24",
     end: "2026-01-03", // End date is exclusive, so covers up to Jan 2nd
@@ -288,8 +288,8 @@ const CarerHolidayCalendar: React.FC = () => {
           dayCellDidMount={dayCellDidMount} // Apply yellow color to Dec 2nd
           dayHeaderClassNames="bg-gray-100 text-gray-700 text-sm font-normal py-2 border-b border-gray-200"
           
-          // Cell and border styling
-          dayCellContentClassNames="p-0"
+          // // Cell and border styling
+          // dayCellContentClassNames="p-0"
           // Ensure all events are small and tight
           eventClassNames="p-0 m-0" 
           

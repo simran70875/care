@@ -8,7 +8,6 @@ import {
   MenuItem, // Import MenuItem for the dropdown
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Search } from "lucide-react";
 
 // =================================================================
 // 1. CONSTANTS AND TYPE DEFINITIONS
@@ -64,52 +63,6 @@ const ActionsReport: React.FC = () => {
   const handleSearchClick = () => {
     console.log("Search for Actions Report with State:", selectedState);
   };
-
-  // State for individual column searches (simulated for display)
-  const [columnSearches, setColumnSearches] = useState({
-    No: "",
-    Name: "",
-    StatusChangeDate: "",
-    ActionComment: "",
-    HasContractSigned: "",
-    HasBackgroundCheckReturned: "",
-  });
-
-  // Since DataGrid doesn't inherently support inline search, we'll render them manually
-  const renderColumnSearchFields = () => (
-    <Box className="flex" sx={{ '& .MuiFormControl-root': { height: '35px' } }}>
-      {actionReportColumns.map((col) => (
-        <Paper 
-          key={col.field} 
-          elevation={0} 
-          className="flex items-center" 
-          sx={{ 
-            width: col.width, 
-            minWidth: col.width, 
-            borderRight: '1px solid #e0e0e0',
-            backgroundColor: '#f9f9f9', // Light background for search fields
-          }}
-        >
-          <TextField
-            fullWidth
-            size="small"
-            placeholder={col.field === 'No' ? 'Search No.' : `Search ${col.headerName}`}
-            value={columnSearches[col.field as keyof typeof columnSearches] || ''}
-            onChange={(e) => setColumnSearches({ ...columnSearches, [col.field]: e.target.value })}
-            variant="standard"
-            InputProps={{
-              disableUnderline: true,
-              style: { fontSize: 13, padding: '0 8px', height: '100%', border: 'none' },
-            }}
-            sx={{
-                '& .MuiInputBase-root': { height: '100%' },
-                '& .MuiInputBase-input': { height: '100%', padding: '0 8px !important' },
-            }}
-          />
-        </Paper>
-      ))}
-    </Box>
-  );
 
   return (
     <Box className="bg-white min-h-screen">
