@@ -1,8 +1,6 @@
-import React from 'react';
 import { 
   Palmtree, 
   Calendar, 
-  Info, 
   TrendingUp, 
   History, 
   ArrowUpRight,

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Calendar as CalendarIcon, 
-  Clock, 
   ChevronLeft, 
   ChevronRight, 
   Timer, 
@@ -10,7 +9,6 @@ import {
   AlertCircle,
   Download,
   ArrowUpRight,
-  MoreHorizontal
 } from 'lucide-react';
 
 const CarerTimesheet = () => {

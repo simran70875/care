@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   MessageSquarePlus, 
-  Search, 
-  Filter, 
   User, 
   Clock, 
   Stethoscope, 

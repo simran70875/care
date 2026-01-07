@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { 
   Plus, 
   Droplets, 
@@ -6,17 +5,14 @@ import {
   Wind, 
   Trash2, 
   History, 
-  ChevronRight, 
   Filter, 
   AlertCircle,
   Clock,
   User,
-  CheckCircle2,
   Moon
 } from 'lucide-react';
 
 const DailyCareLogs = () => {
-  const [selectedResident, setSelectedResident] = useState('Arthur Morgan');
 
   const recentLogs = [
     { id: 1, type: 'Hydration', volume: '200ml', time: '11:30 AM', carer: 'Sarah T.', status: 'Completed' },
@@ -35,7 +31,7 @@ const DailyCareLogs = () => {
             <User className="w-8 h-8" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-800">{selectedResident}</h1>
+            <h1 className="text-2xl font-bold text-slate-800">Arthur Morgan</h1>
             <p className="text-slate-500 text-sm">Room 204-A • High Fall Risk</p>
           </div>
         </div>

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
-  FileText, 
   Stethoscope, 
   Utensils, 
   Moon, 
@@ -13,7 +12,6 @@ import {
   User, 
   Clock,
   ClipboardList,
-  ChevronDown
 } from 'lucide-react';
 
 const CareLogsPage = () => {

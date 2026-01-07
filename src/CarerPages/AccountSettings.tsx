@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
-  User, 
   Lock, 
-  Bell, 
   ShieldCheck, 
   Camera, 
   Mail, 

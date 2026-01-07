@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   AlertTriangle, 
   FileWarning, 
   ShieldAlert, 
   Clock, 
-  Search, 
-  Filter, 
   ChevronRight, 
   MoreHorizontal, 
   Plus,
   Send,
   Eye,
-  CheckCircle2,
   Users
 } from 'lucide-react';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   FileSearch, 
   FileText, 
@@ -10,7 +10,6 @@ import {
   Search, 
   ChevronRight, 
   Clock, 
-  MoreVertical,
   AlertCircle,
   BarChart3
 } from 'lucide-react';

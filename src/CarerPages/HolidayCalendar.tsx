@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import { 
   Calendar, 
   ChevronLeft, 
   ChevronRight, 
-  Gift, 
   Info, 
   Download, 
   Star,
@@ -13,7 +11,7 @@ import {
 } from 'lucide-react';
 
 const HolidayCalendar = () => {
-  const [currentMonth, setCurrentMonth] = useState('January 2026');
+  // const [currentMonth, setCurrentMonth] = useState('January 2026');
 
   const holidays = [
     { date: '01', day: 'Thu', name: 'New Year\'s Day', type: 'Public Holiday', status: 'Pay Rate: 2.0x' },
@@ -47,7 +45,7 @@ const HolidayCalendar = () => {
           <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
             <div className="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
               <div className="flex items-center space-x-4">
-                <h2 className="text-lg font-bold text-slate-800">{currentMonth}</h2>
+                <h2 className="text-lg font-bold text-slate-800">January 2026</h2>
                 <div className="flex bg-white border border-slate-200 rounded-lg p-1">
                   <button className="p-1 hover:bg-slate-50 rounded-md"><ChevronLeft className="w-4 h-4 text-slate-400" /></button>
                   <button className="p-1 hover:bg-slate-50 rounded-md"><ChevronRight className="w-4 h-4 text-slate-400" /></button>

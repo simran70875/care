@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { 
   FileText, 
   Search, 
@@ -11,13 +10,9 @@ import {
   ChevronRight,
   FolderOpen,
   ShieldCheck,
-  Clock,
-  User
 } from 'lucide-react';
 
 const DocumentListScreen = () => {
-  const [selectedFolder, setSelectedFolder] = useState('All Documents');
-
   const documents = [
     { 
       id: 'DOC-2024-001', 

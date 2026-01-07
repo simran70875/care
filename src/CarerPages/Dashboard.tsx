@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Clock, 
   Users, 
   Pill, 
-  Calendar, 
   TrendingUp, 
   CheckCircle2, 
   Heart, 
-  MoreHorizontal,
   AlertCircle,
   MapPin,
   ChevronRight,
   Play,
-  ChevronRightSquare,
   ExternalLink
 } from 'lucide-react';
 

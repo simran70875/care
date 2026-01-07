@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+
 import { 
   ChevronLeft, 
   ChevronRight, 
   Plus, 
   User, 
-  Clock, 
   Video, 
   MapPin, 
   MoreHorizontal,
@@ -14,7 +13,6 @@ import {
 } from 'lucide-react';
 
 const VisitSchedule = () => {
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 6)); // Jan 2026
 
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Pill, 
   Clock, 
@@ -6,7 +6,6 @@ import {
   CheckCircle2, 
   XCircle, 
   Info, 
-  ChevronRight, 
   Search, 
   Filter,
   History,

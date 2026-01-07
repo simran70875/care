@@ -2,7 +2,6 @@ import { NavItem } from "../layout/AppSidebar";
 import {
   Users,
   FileText,
-  Search,
   Settings,
   GridIcon,
   UserIcon,

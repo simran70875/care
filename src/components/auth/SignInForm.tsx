@@ -13,7 +13,15 @@ export default function SignInForm() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    navigate("/dashboard");
+    if (activeTab === "admin") {
+      navigate("/dashboard");
+      // Perform admin login logic
+      console.log("Logging in as Admin:", { userId, password });
+    } else {
+      navigate("/carer/dashboard");
+      // Perform carer login logic
+      console.log("Logging in as Carer:", { userId, password });
+    }
   };
 
   return (
@@ -36,10 +44,11 @@ export default function SignInForm() {
                   key={tab}
                   type="button"
                   onClick={() => setActiveTab(tab as "admin" | "carer")}
-                  className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === tab
+                  className={`px-4 py-2 text-sm font-medium border-b-2 ${
+                    activeTab === tab
                       ? "border-blue-500 text-blue-600"
                       : "border-transparent text-gray-500 hover:text-gray-700"
-                    }`}
+                  }`}
                 >
                   {tab === "admin" ? "Admin" : "Carer"}
                 </button>
