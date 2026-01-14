@@ -36,7 +36,7 @@ export const residentSubMenu: NavItem[] = [
 // Focused on the logged-in carer's own needs
 export const myHolidaySubMenu: NavItem[] = [
   { name: "Request Leave", path: "/carer/me/holidays/request" },
-  { name: "My Holiday Balance", path: "/carer/me/holidays/balance" },
+  // { name: "My Holiday Balance", path: "/carer/me/holidays/balance" },
   { name: "Holiday Calendar", path: "/carer/me/holidays/calendar" },
 ];
 
