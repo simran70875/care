@@ -21,15 +21,11 @@ import {
   List,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router";
-import { useCustomerList } from "../../hooks/useCustomerList";
 
 export default function CustomerPage() {
   const navigate = useNavigate();
-  const { userData, loading } = useCustomerList();
-  // const [paginationModel, setPaginationModel] = useState({
-  //   page: 0,
-  //   pageSize: 100,
-  // });
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [search, setSearch] = useState("");
   const [exportAnchor, setExportAnchor] = useState<null | HTMLElement>(null);
@@ -6892,12 +6888,14 @@ export default function CustomerPage() {
     },
     { field: "_id", headerName: "Customer ID", width: 120 },
     {
-      field: "name", headerName: "Full Name", width: 180, renderCell: (params) => (
+      field: "name",
+      headerName: "Full Name",
+      width: 180,
+      renderCell: (params) => (
         <Link to="/customer/view" className="text-blue-600 hover:underline">
           {params.value}
         </Link>
-      )
-
+      ),
     },
     { field: "address", headerName: "Address", width: 250 },
     { field: "area", headerName: "Area", width: 120 },

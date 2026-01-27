@@ -21,15 +21,13 @@ import {
   List,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router";
-import { useCustomerList } from "../../hooks/useCustomerList";
+
 
 export default function CustomerPage() {
   const navigate = useNavigate();
-  const { userData, loading } = useCustomerList();
-  // const [paginationModel, setPaginationModel] = useState({
-  //   page: 0,
-  //   pageSize: 100,
-  // });
+  const [userData, setUserdata] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [activeTab, setActiveTab] = useState(0);
   const [search, setSearch] = useState("");
   const [exportAnchor, setExportAnchor] = useState<null | HTMLElement>(null);

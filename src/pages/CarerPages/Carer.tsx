@@ -12,10 +12,8 @@ import { EnvelopeIcon } from "../../icons";
 import DataTable from "../../components/common/DataTable";
 import ConfirmModal from "../../components/common/ConfirmModal";
 import CommonModal from "../../components/common/CommonModal";
-// import { User } from "../types/auth"; // We will redefine Carer based on User if possible
 import toast from "react-hot-toast";
 import DropzoneComponent from "../../components/form/form-elements/DropZone";
-import { useAxios } from "../../hooks/useAxios";
 import { Tab, Tabs } from "@mui/material";
 
 // --- DUMMY DATA AND TYPES MODIFICATIONS ---
@@ -933,10 +931,10 @@ export default function CarersPage() {
   };
 
   const activeCarers = DUMMY_CARER_DATA.filter(
-    (c) => c.isActive === "Activated"
+    (c) => c.isActive === "Activated",
   );
   const pendingCarers = DUMMY_CARER_DATA.filter(
-    (c) => c.isActive === "Not Activated"
+    (c) => c.isActive === "Not Activated",
   );
 
   const archivedCarers: BaseUser[] = [
@@ -2108,7 +2106,7 @@ export default function CarersPage() {
         carer.address?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         carer.userId?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         carer._id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        carer.phone?.includes(searchQuery)
+        carer.phone?.includes(searchQuery),
     );
   }, [activeTab, searchQuery]);
 
@@ -2116,7 +2114,7 @@ export default function CarersPage() {
   const [editCarer, setEditCarer] = useState<BaseUser | null>(null);
   const [deleteCarer, setDeleteCarer] = useState<BaseUser | null>(null);
   const [statusChangeCarer, setStatusChangeCarer] = useState<BaseUser | null>(
-    null
+    null,
   );
   const [addCarerModalOpen, setAddCarerModalOpen] = useState(false);
 
@@ -2167,15 +2165,17 @@ export default function CarersPage() {
   // const metaData = { total: DUMMY_CARER_DATA.length };
 
   // Use Axios hooks are kept for modal actions but marked as manual to avoid real calls
-  const { loading: addLoading } = useAxios({
-    url: "/api/carers",
-    method: "post",
-    manual: true,
-    config: {
-      headers: { "Content-Type": "multipart/form-data" },
-      Authorization: adminToken ? `Bearer ${adminToken}` : "",
-    },
-  });
+  // const { loading: addLoading } = useAxios({
+  //   url: "/api/carers",
+  //   method: "post",
+  //   manual: true,
+  //   config: {
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //     Authorization: adminToken ? `Bearer ${adminToken}` : "",
+  //   },
+  // });
+
+  const [addLoading, setAddLoading] = useState(false);
 
   // Mock refetch function
   const refetch = () => {
@@ -2443,7 +2443,7 @@ export default function CarersPage() {
         filterable: false,
       },
     ],
-    [displayedCarers]
+    [displayedCarers],
   );
 
   const handleReinstate = (carer: BaseUser) => {

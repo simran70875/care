@@ -4,23 +4,59 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../store/slices/authSlice";
+import api from "../../api/axios";
+import { API_PATHS } from "../../utils/config";
+import toast from "react-hot-toast";
 
 export default function SignInForm() {
-  const [activeTab, setActiveTab] = useState<"admin" | "carer">("admin");
+  const [activeTab, setActiveTab] = useState<"superadmin" | "carer">("superadmin");
   const [showPassword, setShowPassword] = useState(false);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLogin = async () => {
-    if (activeTab === "admin") {
-      navigate("/dashboard");
-      // Perform admin login logic
-      console.log("Logging in as Admin:", { userId, password });
-    } else {
-      navigate("/carer/dashboard");
-      // Perform carer login logic
-      console.log("Logging in as Carer:", { userId, password });
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const toastId = toast.loading("Signing in...");
+
+    try {
+      const res = await api.post(API_PATHS.LOGIN, {
+        email: userId,
+        password,
+        role: activeTab,
+      });
+
+      const { token, user } = res.data;
+
+      // Store token
+      const storageKey = activeTab === "superadmin" ? "adminToken" : "carerToken";
+      localStorage.setItem(storageKey, token);
+
+      // Redux
+      dispatch(
+        loginSuccess({
+          user,
+          token,
+          role: user.role,
+        }),
+      );
+
+      toast.success("Login successful 🎉", { id: toastId });
+
+      // Redirect
+      if (activeTab === "superadmin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/carer/dashboard");
+      }
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || "Invalid credentials", {
+        id: toastId,
+      });
     }
   };
 
@@ -39,18 +75,18 @@ export default function SignInForm() {
           <div>
             {/* Tabs */}
             <div className="mb-6 flex border-b border-gray-200 dark:border-gray-700">
-              {["admin", "carer"].map((tab) => (
+              {["superadmin", "carer"].map((tab) => (
                 <button
                   key={tab}
                   type="button"
-                  onClick={() => setActiveTab(tab as "admin" | "carer")}
+                  onClick={() => setActiveTab(tab as "superadmin" | "carer")}
                   className={`px-4 py-2 text-sm font-medium border-b-2 ${
                     activeTab === tab
                       ? "border-blue-500 text-blue-600"
                       : "border-transparent text-gray-500 hover:text-gray-700"
                   }`}
                 >
-                  {tab === "admin" ? "Admin" : "Carer"}
+                  {tab === "superadmin" ? "Super Admin" : "Carer"}
                 </button>
               ))}
             </div>

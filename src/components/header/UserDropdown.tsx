@@ -3,8 +3,9 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { logout } from "../../features/auth/authSlice";
+
 import { useAuth } from "../../hooks/useAuth";
+import { logout } from "../../store/slices/authSlice";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);

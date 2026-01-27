@@ -109,6 +109,7 @@ import HolidayCalendar from "./CarerPages/HolidayCalendar.tsx";
 import NotificationsScreen from "./CarerPages/Notifications.tsx";
 import HandoverNotes from "./CarerPages/HandoverNotes.tsx";
 import AccountSettings from "./CarerPages/AccountSettings.tsx";
+import ProtectedRoute from "./components/routes/ProtectedRoute.tsx";
 
 export default function App() {
   const [showInitialLoader, setShowInitialLoader] = useState(() => {
@@ -145,13 +146,25 @@ export default function App() {
 
         {/* Protected Admin Routes */}
         <Route>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute role="admin">
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index path="/dashboard" element={<Home />} />
           </Route>
         </Route>
 
         {/* customer layouts screens */}
-        <Route element={<CustomerLayout />}>
+        <Route
+          element={
+            <ProtectedRoute role="admin">
+              <CustomerLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/customers/all" element={<CustomerPage />} />
           <Route path="/customers/addClient" element={<AddCustomerPage />} />
 
@@ -264,7 +277,13 @@ export default function App() {
           />
         </Route>
 
-        <Route element={<CustomerDetailsLayout />}>
+        <Route
+          element={
+            <ProtectedRoute role="admin">
+              <CustomerDetailsLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/customer/view" element={<ClientSummaryProfile />} />
           <Route path="/customer/details" element={<CustomerDetailsPage />} />
 
@@ -377,7 +396,13 @@ export default function App() {
         {/* customer layouts screens */}
 
         {/* Carer layouts screens */}
-        <Route element={<CarerLayout />}>
+        <Route
+          element={
+            <ProtectedRoute role="admin">
+              <CarerLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/carers/all" element={<CarersPage />} />
           <Route path="/carer/add" element={<AddCarerPage />} />
           <Route
@@ -451,23 +476,56 @@ export default function App() {
         </Route>
 
         {/* carer panel screens after carer login */}
-        <Route element={<CarerPanelLayout />}>
+        <Route
+          element={
+            <ProtectedRoute role="carer">
+              <CarerPanelLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/carer/dashboard" element={<Dashboard />} />
           <Route path="/carer/me/profile" element={<CarerProfileScreen />} />
-          <Route path="/carer/residents/my-list" element={<ResidentDirectory />} />
+          <Route
+            path="/carer/residents/my-list"
+            element={<ResidentDirectory />}
+          />
           <Route path="/carer/residents/schedule" element={<VisitSchedule />} />
           <Route path="/carer/residents/logs" element={<CareLogsPage />} />
           <Route path="/carer/residents/medication" element={<EMARPage />} />
-          <Route path="/carer/residents/reports/summary" element={<ReportsCarePlans />} />
-          <Route path="/carer/residents/reports/daily-logs" element={<DailyCareLogs />} />
-          <Route path="/carer/residents/reports/incidents" element={<IncidentReports />} />
-          <Route path="/carer/residents/reports/documents" element={<DocumentListScreen />} />
-          <Route path="/carer/me/hours/timesheets" element={<CarerTimesheet />} />
+          <Route
+            path="/carer/residents/reports/summary"
+            element={<ReportsCarePlans />}
+          />
+          <Route
+            path="/carer/residents/reports/daily-logs"
+            element={<DailyCareLogs />}
+          />
+          <Route
+            path="/carer/residents/reports/incidents"
+            element={<IncidentReports />}
+          />
+          <Route
+            path="/carer/residents/reports/documents"
+            element={<DocumentListScreen />}
+          />
+          <Route
+            path="/carer/me/hours/timesheets"
+            element={<CarerTimesheet />}
+          />
           <Route path="/carer/me/hours/upcoming" element={<UpcomingShifts />} />
           <Route path="/carer/me/holidays/request" element={<RequestLeave />} />
-          <Route path="/carer/me/holidays/balance" element={<HolidayBalance />} />
-          <Route path="/carer/me/holidays/calendar" element={<HolidayCalendar />} />
-          <Route path="/carer/me/notifications" element={<NotificationsScreen />} />
+          <Route
+            path="/carer/me/holidays/balance"
+            element={<HolidayBalance />}
+          />
+          <Route
+            path="/carer/me/holidays/calendar"
+            element={<HolidayCalendar />}
+          />
+          <Route
+            path="/carer/me/notifications"
+            element={<NotificationsScreen />}
+          />
           <Route path="/carer/me/handover" element={<HandoverNotes />} />
           <Route path="/carer/me/settings" element={<AccountSettings />} />
         </Route>
